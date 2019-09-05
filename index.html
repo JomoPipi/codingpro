@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link id="style" rel="stylesheet" type="text/css" href="css/light.css" />
+    <title>codingpro</title>
+</head>
+<body>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Codingpro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <ul class="nav nav-pills">
+                <li class="nav-item dropdown show">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                  href="#" role="button" aria-haspopup="true" 
+                  aria-expanded="true">Resources</a>
+                  <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-header"> - other free coding websites - </a>
+                    <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
+                    <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
+                    <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
+                    <a class="dropdown-header"> - papers - </a>
+                    <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
+                    <a class="dropdown-header"> - videos - </a>
+                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
+                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
+                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
+                    <a class="dropdown-header"> - games - </a>
+                    <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
+          
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">submit suggestion</a>
+                  </div>
+                </li>
+              </ul>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-primary" type="submit">Sign In</button>
+          </form>
+        </div>
+    </nav>
+    
+    
+
+    <center>
+      <div class="jumbotron">
+        <h1 class="display-4"> learn to write code</h1>
+        <p class="lead">  </p>
+        <hr class="my-4">
+        <p class="lead" 
+        onclick="document.getElementById('ad').style.display=document.getElementById('ad').style.display==='block'?'none':'block'">
+          <a class="btn btn-success" href="#" role="button">
+          GET STARTED</a> or <a href="#"> sign in </a>
+        </p>
+      </div>
+
+      <div style="display:none" id="ad" class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Sorry!</h4>
+        <p class="mb-0">Site is under construction. Thanks for stopping by!</a>.</p>
+      </div>
+
+      <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
+      </canvas>
+    </center>
+    <script>
+      function animateBackground(){
+        const canvas = document.getElementById('ctx')
+        const ctx = canvas.getContext('2d')
+        let W = canvas.width = window.innerWidth,
+            H = canvas.height = window.innerHeight
+        let time = 0
+        setInterval(_=>{
+          time++
+          ctx.strokeStyle='#fff'
+          ctx.fillStyle='green'
+          ctx.lineWidth = 0.5
+          ctx.fillRect(0,0,W,H)
+              ctx.beginPath()
+          const di = 30*Math.sin(time/100.0) + 30
+          const dj = 30*Math.sin(time/50.0) + 30
+          const x = time % 2
+          for (let  i=0; i<W; i += di)
+            for(let j=0; j<H; j += dj) {
+              ctx.lineTo(i,j,i,W,7)
+              ctx.arc(i,W,H,W,7)
+            }
+              ctx.stroke()
+              ctx.closePath()
+        },10)
+      }
+      animateBackground()
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
