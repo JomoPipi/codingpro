@@ -45,7 +45,7 @@
               </ul>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-primary" type="submit">Sign In</button>
+            <button class="btn btn-primary" type="submit">Log in</button>
           </form>
         </div>
     </nav>
@@ -53,14 +53,14 @@
     
 
     <center>
-      <div class="jumbotron">
-        <h1 class="display-4"> learn to write code</h1>
+      <div class="jumbotron" style="background-color: transparent;">
+        <h1 class="display-4"> learn to code&mdash; fast and free </h1>
         <p class="lead">  </p>
         <hr class="my-4">
         <p class="lead" 
         onclick="document.getElementById('ad').style.display=document.getElementById('ad').style.display==='block'?'none':'block'">
-          <a class="btn btn-success" href="#" role="button">
-          GET STARTED</a> or <a href="#"> sign in </a>
+          <a class="btn btn-primary btn-lg" href="#" role="button">
+          GET STARTED</a>
         </p>
       </div>
 
@@ -70,7 +70,7 @@
         <p class="mb-0">Site is under construction. Thanks for stopping by!</a>.</p>
       </div>
 
-      <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
+      <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
       </canvas>
     </center>
     <script>
@@ -82,22 +82,37 @@
         let time = 0
         setInterval(_=>{
           time++
-          ctx.strokeStyle='#fff'
-          ctx.fillStyle='green'
-          ctx.lineWidth = 0.5
+          ctx.strokeStyle='#faf'
+          ctx.fillStyle='#ddd'
+          ctx.lineWidth = 1
           ctx.fillRect(0,0,W,H)
-              ctx.beginPath()
-          const di = 30*Math.sin(time/100.0) + 30
-          const dj = 30*Math.sin(time/50.0) + 30
-          const x = time % 2
-          for (let  i=0; i<W; i += di)
-            for(let j=0; j<H; j += dj) {
-              ctx.lineTo(i,j,i,W,7)
-              ctx.arc(i,W,H,W,7)
+          ctx.beginPath()
+
+          const speed = 5
+          const S = n => Math.tan(time/((n*speed)||1))+1 
+          const C = n => Math.sin(time/((n*speed)||1))+1
+          const dx = W
+          const dy = H
+          const A = S(50), B = C(50)
+          for (let x=-W*10; x<W*20; x += dx)
+            for (let y=-H*10,i=0; y<H*20; y += dy, i++) {
+              const [a,b,c,d,e,f,g,h] = 
+              [x/A,-x/A,x/B,-x/B,y/A,-y/A,y/B,-y/B]
+              const [aa,bb,cc,dd] =
+              i %2 ? [a,b,c,d] : [e,f,g,h]
+              ctx.bezierCurveTo(
+                aa,
+                bb,
+                cc,
+                dd,
+                x*A,
+                y*B)   
             }
-              ctx.stroke()
-              ctx.closePath()
-        },10)
+
+
+          ctx.stroke()
+          ctx.closePath()
+        },20)
       }
       animateBackground()
     </script>
