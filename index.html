@@ -5,119 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link id="style" rel="stylesheet" type="text/css" href="css/light.css" />
-    <title>codingpro</title>
+    <title>Codingpro</title>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+    <script src="ace.js"></script>
 </head>
 <body>
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Codingpro</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <ul class="nav nav-pills">
-                <li class="nav-item dropdown show">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
-                  href="#" role="button" aria-haspopup="true" 
-                  aria-expanded="true">Resources</a>
-                  <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-header"> - other free coding websites - </a>
-                    <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
-                    <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
-                    <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
-                    <a class="dropdown-header"> - papers - </a>
-                    <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
-                    <a class="dropdown-header"> - videos - </a>
-                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
-                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
-                    <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
-                    <a class="dropdown-header"> - games - </a>
-                    <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
-          
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">submit suggestion</a>
-                  </div>
-                </li>
-              </ul>
-          </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Codingpro</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tutorial</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item dropdown show">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+            href="#" role="button" aria-haspopup="true" 
+            aria-expanded="true">Resources</a>
+            <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+              <a class="dropdown-header"> - other free coding websites - </a>
+              <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
+              <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
+              <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
+              <a class="dropdown-header"> - papers - </a>
+              <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
+              <a class="dropdown-header"> - videos - </a>
+              <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
+              <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
+              <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
+              <a class="dropdown-header"> - games - </a>
+              <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
+    
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">submit suggestion</a>
+            </div>
+          </li>
+        </ul>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-primary" type="submit">Log in</button>
+            <button class="btn btn-info my-2 my-sm-0" style="color:black;font-family:cursive;border-top-right-radius:9px;" type="submit"> report a bug </button>
           </form>
-        </div>
-    </nav>
+      </form>
+    </div>
+  </nav>
     
-    
+    <div style="float:right;  margin:0px; border: 1px solid lightgray;">
+      <table><form method="post" action="/login">
+      </form><tbody><tr><td>id/email</td><td>
+        <input type="text" name="uname" size="20">
+      </td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td>
+        <input type="password" name="pw" size="20">
+      </td>
+    </tr>
+    <tr>
+      <td>
 
-    <center>
-      <div class="jumbotron" style="background-color: transparent;">
-        <h1 class="display-4"> learn to code&mdash; fast and free </h1>
-        <p class="lead">  </p>
-        <hr class="my-4">
-        <p class="lead" 
-        onclick="document.getElementById('ad').style.display=document.getElementById('ad').style.display==='block'?'none':'block'">
-          <a class="btn btn-primary btn-lg" href="#" role="button">
-          GET STARTED</a>
-        </p>
+      </td>
+      <td>
+        <input type="submit" name="dologin" value="log in">
+      </td>
+    </tr>
+     <input type="hidden" name="fromurl" value="/java"><tr>
+       <td><a href="/reset">forgot password</a> or 
+       <td ><a href="/reset">create account</a> 
+      </td></tr></tbody></table></div>
+
+
+    <div style="padding-left:5vw;">
+      <h2>sumDouble</h2>
+      <p>Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
+      <br>
+      <p>
+          sumDouble(1, 2) → 3 <br>
+          sumDouble(3, 2) → 5 <br>
+          sumDouble(2, 2) → 8 <br>
+      </p>
+
+      <div style="border:0.5px solid #000;width:70vw;min-height:60vh;" id="editor"
+      >function add(a, b) {
+
+        
+}
       </div>
+    </div>    
+      
 
-      <div style="display:none" id="ad" class="alert alert-dismissible alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4 class="alert-heading">Sorry!</h4>
-        <p class="mb-0">Site is under construction. Thanks for stopping by!</a>.</p>
-      </div>
-
+      
       <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
       </canvas>
-    </center>
     <script>
+      var editor = window.ace.edit(document.getElementById("editor"));
+      
+      editor.setOptions({
+        enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
+        enableLiveAutocompletion: true, // the editor completes the statement while you are typing
+        showPrintMargin: false, // hides the vertical limiting strip
+        maxLines: Infinity,
+        fontSize: "100%" // ensures that the editor fits in the environment
+      });
+      editor.setTheme("ace/theme/chrome");
+      editor.getSession().setMode("ace/mode/javascript");
+    </script>
+
+    <script>
+      function range(n){ return [...Array(n)].map((_,i)=>i) }
+      function flatMap(arr) { return [...arr.map(x=>x.pop?flatMap(x):x)] }
       function animateBackground(){
         const canvas = document.getElementById('ctx')
         const ctx = canvas.getContext('2d')
         let W = canvas.width = window.innerWidth,
             H = canvas.height = window.innerHeight
         let time = 0
-        setInterval(_=>{
-          time++
-          ctx.strokeStyle='#faf'
-          ctx.fillStyle='#ddd'
-          ctx.lineWidth = 1
-          ctx.fillRect(0,0,W,H)
-          ctx.beginPath()
 
-          const speed = 5
-          const S = n => Math.tan(time/((n*speed)||1))+1 
-          const C = n => Math.sin(time/((n*speed)||1))+1
-          const dx = W
-          const dy = H
-          const A = S(50), B = C(50)
-          for (let x=-W*10; x<W*20; x += dx)
-            for (let y=-H*10,i=0; y<H*20; y += dy, i++) {
-              const [a,b,c,d,e,f,g,h] = 
-              [x/A,-x/A,x/B,-x/B,y/A,-y/A,y/B,-y/B]
-              const [aa,bb,cc,dd] =
-              i %2 ? [a,b,c,d] : [e,f,g,h]
-              ctx.bezierCurveTo(
-                aa,
-                bb,
-                cc,
-                dd,
-                x*A,
-                y*B)   
-            }
+      setInterval(_=>{
+        time++
+        ctx.strokeStyle='#FAF'
+        ctx.fillStyle='#fff'
+        ctx.lineWidth = 1
+        ctx.fillRect(0,0,W,H)
+        ctx.beginPath()
 
-
+        const speed = 3
+        const n = 50, dx = W>>2, dy = H>>2
+        const A = Math.tan(time/((n*speed)||1))+1 
+        const B = Math.sin(time/((n*speed)||1))+1
+        for (let x=-W*2; x<W*2; x += dx)
+          for (let y=-H*2,i=0; y<H*2; y += dy, i++) {
+            const [a,b,c,d,e,f,g,h] = [x/A,-x/A,x/B,-x/B,y/A,-y/A,y/B,-y/B]
+            const [aa,bb,cc,dd] = i % 2 ? [a,b,c,d] : [e,f,g,h]
+            ctx.bezierCurveTo(aa, bb, cc, dd, x*A, y*B)   
+            ctx.moveTo(aa*B,bb*A)
+          }
+          
           ctx.stroke()
           ctx.closePath()
-        },20)
+        },20) // 50 FPS
       }
-      animateBackground()
+      // animateBackground()
+    </script>
+    <script>
+
+        const config = {
+          apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
+          authDomain: "codingpro-5c5d9.firebaseapp.com",
+          databaseURL: "https://codingpro-5c5d9.firebaseio.com",
+          projectId: "codingpro-5c5d9",
+          storageBucket: "codingpro-5c5d9.appspot.com",
+          messagingSenderId: "350756630303",
+          appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
+        };
+
+      firebase.initializeApp(config);
+
+      // Initialize Cloud Firestore through Firebase
+      const db = firebase.firestore();
+      // db.settings({ timestampsInSnapshots: true })
+
+      function renderDoc(doc) {
+        console.log('doc.data',doc.data())
+      }
+
+      // db.collection('users').get().then(snapshot => {
+      //     snapshot.docs.forEach(renderDoc)
+      // })
+
+      // db.collection("users").add({
+      //     first: "Ada",
+      //     last: "Lovelace",
+      //     born: 1815
+      // })
+      // .then(function(docRef) {
+      //     console.log("Document written with ID: ", docRef.id);
+      // })
+      // .catch(function(error) {
+      //     console.error("Error adding document: ", error);
+      // });
+
+      function User(login,password) {
+        this.login = login
+        this.password = password
+        this.completions = []
+        this.submissions = []
+      }
+
+      function signUp(email,password) {
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorMessage)
+        });
+      }
+      // signUp('ronaldmcorona@gmail.com','easypass123')
+
+      function signIn(email,password) {
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorMessage)
+        });
+      }
+
+
+
+
+
+
+
+
+
+      
+      // function createLogin(username,password) {
+      //   let req = new XMLHttpRequest();
+      //   req.onreadystatechange = () => {
+      //     if (req.readyState == 4) {
+      //       console.log(req.responseText);
+      //     }
+      //   };
+      //   req.open("get", "https://api.jsonbin.io/b", true);
+      //   req.setRequestHeader("Content-type","application/json")
+      //   req.setRequestHeader("secret-key","$2a$10$BWsymsq4Cu29w1ofA1GzsuOgLqUVbG9kw5jxzMY1Y9Dc5k6DpWQjO")
+      //   req.send(JSON.stringify({username:new User(username,password)}));
+      // }
+      // createLogin('God','qwertyuiopasdfghjklzxcvbnm')
+
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
