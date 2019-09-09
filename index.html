@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link id="style" rel="stylesheet" type="text/css" href="css/light.css" />
-    <title>Codingpro</title>
+    <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
+    <title>         Codingpro         </title>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Codingpro</a>
+      <a class="navbar-brand" href="#"         >CodingPro         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,18 +23,19 @@
 
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Tutorial</a>
+          <a class="nav-link" href="#">         Tutorial         </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" href="#">         About         </a>
         </li>
+
 
         <ul class="nav nav-pills">
           <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
             href="#" role="button" aria-haspopup="true" 
-            aria-expanded="true">Resources</a>
+            aria-expanded="true">         Resources         </a>
             <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
               <a class="dropdown-header"> - other free coding websites - </a>
               <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
@@ -58,7 +59,8 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-info my-2 my-sm-0" style="color:black;font-family:cursive;border-top-right-radius:9px;" type="submit"> report a bug </button>
+            <button class="btn btn-info my-2 my-sm-0" style="color:black;font-family:cursive;border-top-right-radius:9px;" 
+              type="submit">         report a bug         </button>
           </form>
       </form>
     </div>
@@ -85,14 +87,14 @@
       </td>
     </tr>
      <input type="hidden" name="fromurl" value="/java"><tr>
-       <td><a href="/reset">forgot password</a> or 
-       <td ><a href="/reset">create account</a> 
+       <td><a href="/reset">         forgot password         </a> or 
+       <td ><a href="/reset">         create account         </a> 
       </td></tr></tbody></table></div>
 
 
     <div style="padding-left:5vw;">
       <h2>sumDouble</h2>
-      <p>Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
+      <p> Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
       <br>
       <p>
           sumDouble(1, 2) → 3 <br>
@@ -100,12 +102,11 @@
           sumDouble(2, 2) → 8 <br>
       </p>
 
-      <div style="border:0.5px solid #000;width:70vw;min-height:60vh;" id="editor"
-      >function add(a, b) {
-
-        
+      <div style="border:1px solid #999;width:40vw;min-height:60vh;" id="editor"
+>function add(a, b) {
+  
 }
-      </div>
+</div>
     </div>    
       
 
@@ -114,16 +115,20 @@
       </canvas>
     <script>
       var editor = window.ace.edit(document.getElementById("editor"));
-      
-      editor.setOptions({
+      const options = {
         enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
         enableLiveAutocompletion: true, // the editor completes the statement while you are typing
         showPrintMargin: false, // hides the vertical limiting strip
         maxLines: Infinity,
         fontSize: "100%" // ensures that the editor fits in the environment
-      });
+      }
+      editor.setOptions(options);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
+      var row = editor.session.getLength() - 3
+      editor.selection.moveTo(row)
+      editor.navigateLineEnd()
+      editor.focus()
     </script>
 
     <script>
