@@ -87,34 +87,45 @@
       </td>
     </tr>
      <input type="hidden" name="fromurl" value="/java"><tr>
-       <td><a href="/reset">         forgot password         </a> or 
-       <td ><a href="/reset">         create account         </a> 
+       <td><a href="/reset">         forgot password         </a> |
+       <td><a href="/reset">         create account         </a> 
       </td></tr></tbody></table></div>
 
-
-    <div style="padding-left:5vw;">
-      <h2>sumDouble</h2>
-      <p> Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
-      <br>
-      <p>
-          sumDouble(1, 2) → 3 <br>
-          sumDouble(3, 2) → 5 <br>
-          sumDouble(2, 2) → 8 <br>
-      </p>
-
-      <div style="border:1px solid #999;width:40vw;min-height:60vh;" id="editor"
->function add(a, b) {
-  
-}
-</div>
-    </div>    
-      
+    <div style="padding: 5%;" id="buttonsContainer">
+      <button type="button" class="btn btn-primary" id="1" 
+      onclick="
+        D('sample-question').style.display='block'
+        D('buttonsContainer').style.display='none'
+        ">            #1            </button>
+    </div>
+    <div id="sample-question"
+    style="display:none;background-color: #eee; height:100vh;">
+      <div style="padding-left:5vw;">
+        <h2>         sumDouble         </h2>
+        <p> Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
+        <br>
+        <p>
+            sumDouble(1, 2) → 3 <br>
+            sumDouble(3, 2) → 5 <br>
+            sumDouble(2, 2) → 8 <br>
+        </p>
+        <div style="border:1px solid #999;min-width:500px;width:40vw;min-height:60vh;" id="editor"></div>
+      </div>    
+    </div>
 
       
       <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
       </canvas>
     <script>
-      var editor = window.ace.edit(document.getElementById("editor"));
+      const D = x => document.getElementById(x)
+      const SolutionSetups = [
+        `function add(a, b) {
+  
+}
+`
+      ]
+
+      var editor = window.ace.edit(D("editor"));
       const options = {
         enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
         enableLiveAutocompletion: true, // the editor completes the statement while you are typing
@@ -122,6 +133,7 @@
         maxLines: Infinity,
         fontSize: "100%" // ensures that the editor fits in the environment
       }
+      editor.setValue(SolutionSetups[0])
       editor.setOptions(options);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
@@ -135,7 +147,7 @@
       function range(n){ return [...Array(n)].map((_,i)=>i) }
       function flatMap(arr) { return [...arr.map(x=>x.pop?flatMap(x):x)] }
       function animateBackground(){
-        const canvas = document.getElementById('ctx')
+        const canvas = D('ctx')
         const ctx = canvas.getContext('2d')
         let W = canvas.width = window.innerWidth,
             H = canvas.height = window.innerHeight
