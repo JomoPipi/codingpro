@@ -13,7 +13,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#"         >CodingPro         </a>
+      <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,13 +21,9 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
 
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">         Tutorial         </a>
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">         About         </a>
+          <a class="nav-link" href="#" onclick="aboutPage()">         About         </a>
         </li>
 
 
@@ -59,14 +55,18 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-info my-2 my-sm-0" style="color:black;font-family:cursive;border-top-right-radius:9px;" 
-              type="submit">         report a bug         </button>
+            <button class="btn btn-info my-2 my-sm-0" style="color:black;" 
+              type="submit">         Log In         </button>
+          </form>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-success my-2 my-sm-0" style="color:black;border-top-right-radius:9px;" 
+              type="submit">         Create Account         </button>
           </form>
       </form>
     </div>
   </nav>
     
-    <div style="float:right;  margin:0px; border: 1px solid lightgray;">
+    <!-- <div style="float:right;  margin:0px; border: 1px solid lightgray;">
       <table><form method="post" action="/login">
       </form><tbody><tr><td>id/email</td><td>
         <input type="text" name="uname" size="20">
@@ -89,41 +89,775 @@
      <input type="hidden" name="fromurl" value="/java"><tr>
        <td><a href="/reset">         forgot password         </a> |
        <td><a href="/reset">         create account         </a> 
-      </td></tr></tbody></table></div>
-
-    <div style="padding: 5%;" id="buttonsContainer">
-      <button type="button" class="btn btn-primary" id="1" 
-      onclick="
-        D('sample-question').style.display='block'
-        D('buttonsContainer').style.display='none'
-        ">            #1            </button>
-    </div>
-    <div id="sample-question"
-    style="display:none;background-color: #eee; height:100vh;">
+      </td></tr></tbody></table></div> -->
+      
+    <center>
+      <div style="padding-left: 2%;" id="buttons-container"></div>
+    </center>
+    <div id="problem-div"
+    style="display:none;background-color: #eee; height:100%;">
       <div style="padding-left:5vw;">
-        <h2>         sumDouble         </h2>
-        <p> Given two int values, return their sum. But if the two values are the same, then return double their sum.</p>
+        <h2 id="problem-name"></h2>
+        <p id="problem-description"></p>
         <br>
-        <p>
-            sumDouble(1, 2) → 3 <br>
-            sumDouble(3, 2) → 5 <br>
-            sumDouble(2, 2) → 8 <br>
-        </p>
+        <p id="problem-examples"></p>
         <div style="border:1px solid #999;min-width:500px;width:40vw;min-height:60vh;" id="editor"></div>
+        <a href="#"> help </a>
       </div>    
+    </div>
+
+    <div id="about-page" style="display:none;margin-left: 2%;">
+      <div class="jumbotron">
+        <h1 class="display-3">About</h1>
+        <p class="lead">
+          This website attempts to teach coding to first-time beginners who <br>
+          may have never written a line of code. If you enjoy challenges, <br>
+           then this is for you.
+        </p>
+        <hr class="my-4">
+        <p style="font-size: 2em;">
+        </p>
+        <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
+      </div>
     </div>
 
       
       <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
       </canvas>
     <script>
-      const D = x => document.getElementById(x)
-      const SolutionSetups = [
-        `function add(a, b) {
-  
-}
-`
-      ]
+      const D = x => document.getElementById(x),
+            E = x => document.createElement(x)
+
+      function Problem(name,description,examples,solutionSetup,solution) {
+        this.name=name
+        this.description=description
+        this.solutionSetup=solutionSetup
+        this.submission=solutionSetup
+        this.solution=solution
+        this.examples=examples
+      }
+
+      const problems = [
+          [
+            'myFirstFunction',
+            "Just return the input. If you don't know how to do that, then you should research it. Coders should be good at research.",
+            'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → 27 <br>',
+            'function myFirstFunction(input) {\n  \n}',
+            'function myFirstFunction(input) {\n  \n}'
+          ],
+          [
+            'sumDouble',
+            'Given two int values, return their sum. But if the two values are the same, then return double their sum.',
+            'sumDouble(1, 2) → 3 <br> sumDouble(3, 2) → 5 <br> sumDouble(2, 2) → 8 <br>',
+            'function add(a, b) {\n  \n}',
+            'function add(a, b) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ],
+          [
+            'fakeMockup',
+            'This website is still under construction.',
+            '',
+            'function code(x) {\n  \n}',
+            'function code(x) {\n  \n}',
+          ]
+      ].map(args => new Problem(...args))
+      
+
+      Create_All_Buttons: {
+        for (let i in problems) {
+          const btn = E('button')
+          btn.type = 'button'
+          btn.classList.add('btn')
+          btn.classList.add('btn-secondary')
+          btn.style.margin = '5px'
+          btn.style.width = '40px'
+          btn.style.height = '40px'
+          btn.id = i
+          btn.onclick = _ => showQuestion(btn.id)
+          btn.innerHTML = (+i+1)
+          if (i % 10 === 0) D('buttons-container').appendChild(E('br'))
+          D('buttons-container').appendChild(btn)
+        }
+      }
+
 
       var editor = window.ace.edit(D("editor"));
       const options = {
@@ -133,7 +867,26 @@
         maxLines: Infinity,
         fontSize: "100%" // ensures that the editor fits in the environment
       }
-      editor.setValue(SolutionSetups[0])
+    function goHome() { 
+      D('about-page').style.display='none'
+      D('problem-div').style.display='none'
+      D('buttons-container').style.display='block'
+    }
+    function aboutPage() {
+      D('about-page').style.display='block'
+      D('problem-div').style.display='none'
+      D('buttons-container').style.display='none'
+    }
+
+    function showQuestion(n) {
+      D('about-page').style.display='none'
+      D('problem-div').style.display='block'
+      D('buttons-container').style.display='none'
+
+      D('problem-name').innerHTML = problems[n].name
+      D('problem-description').innerHTML = problems[n].description
+      D('problem-examples').innerHTML = problems[n].examples
+      editor.setValue(problems[n].submission)
       editor.setOptions(options);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
@@ -141,6 +894,9 @@
       editor.selection.moveTo(row)
       editor.navigateLineEnd()
       editor.focus()
+
+    }
+
     </script>
 
     <script>
@@ -180,7 +936,7 @@
       // animateBackground()
     </script>
     <script>
-
+      
         const config = {
           apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
           authDomain: "codingpro-5c5d9.firebaseapp.com",
