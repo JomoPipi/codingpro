@@ -92,7 +92,9 @@
       </td></tr></tbody></table></div> -->
       
     <center>
-      <div style="padding-left: 2%;" id="buttons-container"></div>
+      <div style="padding-left: 2%;" id="buttons-container">
+        <h1> 100 JavaScript Problems </h1>
+      </div>
     </center>
     <div id="problem-div"
     style="display:none;background-color: #eee; height:100%;">
@@ -101,6 +103,7 @@
         <p id="problem-description"></p>
         <br>
         <p id="problem-examples"></p>
+        <button type="button" onclick="sendCodeAce(); focusEdit(); return false;"> Attempt </button>
         <div style="border:1px solid #999;min-width:500px;width:40vw;min-height:60vh;" id="editor"></div>
         <a href="#"> help </a>
       </div>    
@@ -131,10 +134,10 @@
       function Problem(name,description,examples,solutionSetup,solution) {
         this.name=name
         this.description=description
-        this.solutionSetup=solutionSetup
-        this.submission=solutionSetup
-        this.solution=solution
         this.examples=examples
+        this.solutionSetup=solutionSetup
+        this.solution=solution
+        this.submission=solutionSetup
       }
 
       const problems = [
@@ -143,21 +146,21 @@
             "Just return the input. If you don't know how to do that, then you should research it. Coders should be good at research.",
             'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → 27 <br>',
             'function myFirstFunction(input) {\n  \n}',
-            'function myFirstFunction(input) {\n  \n}'
+            x => x
           ],
           [
             'sumDouble',
             'Given two int values, return their sum. But if the two values are the same, then return double their sum.',
             'sumDouble(1, 2) → 3 <br> sumDouble(3, 2) → 5 <br> sumDouble(2, 2) → 8 <br>',
             'function add(a, b) {\n  \n}',
-            'function add(a, b) {\n  \n}',
+            (a,b) => a === b ? 4 * a : a + b,
           ],
           [
             'fakeMockup',
             'This website is still under construction.',
-            '',
+            'example(input) -> exampleOutput',
             'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
+            x => x
           ],
           [
             'fakeMockup',
