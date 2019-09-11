@@ -13,7 +13,7 @@
     <script src="ace.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
       <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
         <ul class="nav nav-pills">
           <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle btn-light" data-toggle="dropdown" 
-            href="#" role="button" aria-haspopup="true" 
+            href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
             aria-expanded="true">         Resources         </a>
             <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
               <a class="dropdown-header"> - other free coding websites - </a>
@@ -92,42 +92,14 @@
        <td><a href="/reset">         create account         </a> 
       </td></tr></tbody></table></div> -->
       
-    <center>
-      <div style="width:100%" id="buttons-container">
-        <h1 style="color:#88b;" class="display-1"> <br> 200 JavaScript Problems </h1>
-        <br>
-      </div>
-    </center>
-    <div id="problem-div"
-      style="display:none;background-color: #eee; height:100%;">
-      <div style="padding-left:5vw;">
-        <h2 style="color:#88b;" id="problem-name"></h2>
-        <p id="problem-description"></p>
-        <center>
-          <button type="button" class="btn" 
-           style="color:#603;border:1px solid #fcc;border-radius: 15px;" id="attempt"
-           onclick="runTests(); return false;"> Attempt </button>
-        </center>
-        <p id="problem-examples"></p>
-
-        
-        <div id="editor-output-container" style="display: block;">
-          <div style="border:1px solid #999;width:550px;min-height:50vh;max-height:51vh;float:left;" id="editor"></div>
-          <div id="output-table" style="margin-left:600px;"></div>
-          <div style="clear:both;color:#0a0" id="all-pass-message"></div>
-        </div>
-        <a href="#" style="color:black;position:absolute;left:10px;bottom:10px;"
-          onclick="alert('Try using the return keyword. Your code should be between the two curly brackets. { }')"> help </a>
-      </div>    
-    </div>
     
-    <div id="about-page" style="display:none;margin-left: 2%;">
+    <div id="about-page" style="display:none;margin: 2%;">
       <div class="jumbotron">
-        <h1 class="display-3" style="color:#88b;">About</h1>
+        <h1 class="display-3" style="color:#88b;">         About         </h1>
         <p class="lead">
           This website attempts to teach coding to first-time beginners who <br>
           may have never written a line of code. If you enjoy challenges, <br>
-           then this is for you.
+            then this is for you.
         </p>
         <hr class="my-4">
         <p style="font-size: 2em;">
@@ -135,6 +107,40 @@
         <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
       </div>
     </div>
+
+    <center>
+      <div style="width:100%" id="buttons-container">
+        <h1 style="color:#88b;" class="display-2"> <br>         200 JavaScript Problems         </h1>
+        <br>
+      </div>
+    </center>
+    <div id="problem-div"
+      style="display:none;background-color: #fff; height:100%;">
+      <div style="padding-left:2vw;">
+        <h2 style="color:#88b;" id="problem-name"></h2>
+        <p id="problem-description"></p>
+        <center>
+          <button type="button" class="btn" 
+           style="color:#603;border:1px solid #fcc;border-radius: 15px;" id="attempt"
+           onclick="runTests(); return false;">         Attempt         </button>
+        </center>
+        <p id="problem-examples"></p> 
+        <p style="float:left;width:37vw;"></p>
+        <a href="#" style="color:black;" onclick="showQuestion(+this.id - 1)"> previous </a>
+        <a href="#" style="color:black;" onclick="showQuestion(+this.id + 1)"> next </a> &nbsp; 
+        <a href="#" style="color:black;" onclick=
+        "let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint"> help </a>
+
+        
+        <div id="editor-output-container" style="display: block;clear:both;">
+          <div style="border:1px solid #999;width:50vw;min-height:55vh;max-height:55vh;float:left;" id="editor"></div>
+          <div id="output-table" style="margin-left:55vw;"></div>
+          <div style="color:#0a0;margin-left:55vw;" id="all-pass-message"></div>
+        </div>
+        <span id="hint"></span>
+      </div>    
+    </div>
+    
 
       
       <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
@@ -145,9 +151,8 @@
             E = x => document.createElement(x)
       const output = D('output-table')
 
-
-      Create_All_Buttons: {
-        let color = [250,255,255], row = E('div')
+      Create_All_Buttons_Once_When_The_Page_Loads: {
+        let color = [248,253,253], row = E('div')
         for (let i in PROBLEM_DATA) {
           const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
           btn.type = 'button'
@@ -157,15 +162,16 @@
           btn.style.height = '80px'
           btn.style.font = '20px Arial'
           btn.style.background = rgba
+          btn.style.transition = 'all 0.5s ease'
           btn.onmouseover=_=>btn.style.backgroundColor='#aae'
           btn.onmouseout=_=>btn.style.backgroundColor=rgba
           btn.id = i
-          btn.onclick = _ => (showQuestion(btn.id), currentProblemId = btn.id)
+          btn.onclick = _ => showQuestion(btn.id)
           btn.innerHTML = (+i+1)
           row.appendChild(btn)
           if (i % 10 === 9) {            
-            color.forEach((_,i) => color[i] -= 13)
             row.style.backgroundColor = `rgb(${color.join`,`})`
+            color.forEach((_,i) => color[i] -= 13)
             D('buttons-container').appendChild(row)
             row = E('div')
           }
@@ -182,19 +188,26 @@
         maxLines: 1000,
         autoScrollEditorIntoView: true
       }
-    function goHome() { 
+    function goHome() { hideAllPagesExcept(D('buttons-container')) }
+
+    function aboutPage() { hideAllPagesExcept(D('about-page')) }
+
+    function clearOutputLog() {
+      D('all-pass-message').innerHTML = output.innerHTML = ''
+      while (output.children[0]) output.removeChild(output.children[0])
+      editor.focus()
+    }
+    function hideAllPagesExcept(x) {
+      D('hint').innerHTML = ''
       D('about-page').style.display='none'
       D('problem-div').style.display='none'
-      D('buttons-container').style.display='block'
-    }
-    function aboutPage() {
-      D('about-page').style.display='block'
-      D('problem-div').style.display='none'
       D('buttons-container').style.display='none'
+      if (x) x.style.display='block'
     }
 
     function showQuestion(n) {
-      while (output.children[0]) output.removeChild(output.children[0])
+      currentProblemId = n
+      clearOutputLog()
       D('about-page').style.display='none'
       D('problem-div').style.display='block'
       D('buttons-container').style.display='none'
@@ -206,123 +219,84 @@
       editor.setOptions(options);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
-      var row = editor.session.getLength() - 3
+      var row = editor.session.getLength() - 2
       editor.selection.moveTo(row)
       editor.navigateLineEnd()
-      editor.focus()
-
     }
 
     function runTests() {
-       'use strict'
-        let passedAll = true       
-        D('all-pass-message').innerHTML = output.innerHTML = ''
-        // editor.focus()
-        const { functionName, name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
-        var submission
-        while (output.children[0]) output.removeChild(output.children[0])
-        try { 
-          const src = editor.getValue()
-          eval(`${src}; submission = ${functionName}`) 
-        } 
-        catch(e) { output.innerHTML = e }
-        console.log(typeof submission)
-        if (typeof submission !== 'function') {
-          output.innerHTML = `syntax error or ${functionName} needs to be a function.`
-          return 
+      'use strict'
+      let passedAll = true       
+      clearOutputLog()
+      const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
+      var submission
+      try { 
+        const src = editor.getValue()
+        eval(`${src}; submission = ${name}`) 
+      } 
+      catch(e) { output.innerHTML = e }
+      console.log(submission)
+      if (typeof submission !== 'function') {
+        output.innerHTML = `syntax error or ${name} needs to be a function.`
+        return; 
+      }
+      
+      const table = E('table')
+      addHeaders: { 
+        const row = E('tr'); 
+        ['Expected', 'Actual',''].forEach(r => {
+          const R = E('th'); R.innerHTML = r
+          R.style.border = '1px solid #bbb'
+          R.style.backgroundColor = '#eee'
+          row.append(R)
+        })
+        table.append(row) 
+      }
+      table.style.border = '1px solid #bbb'
+      table.style.float = 'left'
+      table.style.width = '40vw'
+      table.style.height = '20px'
+      table.style.margin = '1px'
+      for (let args of testinputs) {
+        try {
+          var actual = submission(...args)
+        } catch (e) {
+          actual = e.toString()
         }
-        
-        const table = E('table')
-        addHeaders: { 
-          const row = E('tr'); 
-          ['Expected', 'Actual',''].forEach(r => {
-            const R = E('th'); R.innerHTML = r
-            R.style.backgroundColor = '#eee'
-            row.append(R)
-          })
-          table.append(row) 
-        }
-        table.style.border = '1px solid #bbb'
-        table.style.float = 'left'
-        table.style.width = '40vw'
-        table.style.height = '20px'
-        table.style.margin = '1px'
-        for (let args of testinputs) {
-          try {
-            var actual = submission(...args)
-          } catch (e) {
-            actual = e.toString()
-          }
-          const expected = solution(...args)
-          const pass = actual === expected
-          passedAll = passedAll && pass
-          const row = E('tr')
-          const [A,B,C] = [E('td'),E('td'),E('td')]
-          A.innerHTML = `${functionName}(${args.join`,`}) → ${expected}`
-          B.innerHTML = '' + actual
-          C.style.color = pass ? '#505' : '#fff'
-          C.innerHTML = pass ? 'passed!' : 'failed!'
-          C.style.backgroundColor = pass ? '#0f0' : '#f00';
-          [A,B,C].forEach(x => {
-            x.style.border = '1px solid #bbb'
-            row.append(x)
-          })
-          table.append(row) 
-        }
-        output.append(table)
+        const expected = solution(...args)
+        const pass = actual === expected
+        passedAll = passedAll && pass
+        const row = E('tr')
+        const [A,B,C] = [E('td'),E('td'),E('td')]
+        A.innerHTML = `${name}(${args.join`,`}) → ${expected}`
+        B.innerHTML = '' + actual
+        C.style.color = pass ? '#505' : '#fff'
+        C.innerHTML = pass ? 'passed!' : 'failed!'
+        C.style.backgroundColor = pass ? '#0f0' : '#f00';
+        [A,B,C].forEach(x => {
+          x.style.border = '1px solid #bbb'
+          row.append(x)
+        })
+        table.append(row) 
+      }
+      output.append(table)
 
-        D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
+      D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
     }
 
     </script>
 
     <script>
-      function range(n){ return [...Array(n)].map((_,i)=>i) }
-      function flatMap(arr) { return [...arr.map(x=>x.pop?flatMap(x):x)] }
-      function animateBackground(){
-        const canvas = D('ctx')
-        const ctx = canvas.getContext('2d')
-        let W = canvas.width = window.innerWidth,
-            H = canvas.height = window.innerHeight
-        let time = 0
-
-      setInterval(_=>{
-        time++
-        ctx.strokeStyle='#FAF'
-        ctx.fillStyle='#fff'
-        ctx.lineWidth = 1
-        ctx.fillRect(0,0,W,H)
-        ctx.beginPath()
-
-        const speed = 3
-        const n = 50, dx = W>>2, dy = H>>2
-        const A = Math.tan(time/((n*speed)||1))+1 
-        const B = Math.sin(time/((n*speed)||1))+1
-        for (let x=-W*2; x<W*2; x += dx)
-          for (let y=-H*2,i=0; y<H*2; y += dy, i++) {
-            const [a,b,c,d,e,f,g,h] = [x/A,-x/A,x/B,-x/B,y/A,-y/A,y/B,-y/B]
-            const [aa,bb,cc,dd] = i % 2 ? [a,b,c,d] : [e,f,g,h]
-            ctx.bezierCurveTo(aa, bb, cc, dd, x*A, y*B)   
-            ctx.moveTo(aa*B,bb*A)
-          }
-          
-          ctx.stroke()
-          ctx.closePath()
-        },20) // 50 FPS
-      }
-      // animateBackground()
-    </script>
-    <script>
       
-        const config = {
-          apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
-          authDomain: "codingpro-5c5d9.firebaseapp.com",
-          databaseURL: "https://codingpro-5c5d9.firebaseio.com",
-          projectId: "codingpro-5c5d9",
-          storageBucket: "codingpro-5c5d9.appspot.com",
-          messagingSenderId: "350756630303",
-          appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
-        };
+      const config = {
+        apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
+        authDomain: "codingpro-5c5d9.firebaseapp.com",
+        databaseURL: "https://codingpro-5c5d9.firebaseio.com",
+        projectId: "codingpro-5c5d9",
+        storageBucket: "codingpro-5c5d9.appspot.com",
+        messagingSenderId: "350756630303",
+        appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
+      };
 
       firebase.initializeApp(config);
 
