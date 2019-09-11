@@ -9,10 +9,11 @@
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+    <script src="problem_data.js"></script>
     <script src="ace.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,7 +30,7 @@
 
         <ul class="nav nav-pills">
           <li class="nav-item dropdown show">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
+            <a class="nav-link dropdown-toggle btn-light" data-toggle="dropdown" 
             href="#" role="button" aria-haspopup="true" 
             aria-expanded="true">         Resources         </a>
             <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -55,11 +56,11 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-info my-2 my-sm-0" style="color:black;" 
+            <button class="btn my-2 my-sm-0" style="color:black;" 
               type="submit">         Log In         </button>
           </form>
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-success my-2 my-sm-0" style="color:black;border-top-right-radius:9px;" 
+            <button class="btn btn-primary my-2 my-sm-0" style="color:black;border-top-right-radius:9px;" 
               type="submit">         Create Account         </button>
           </form>
       </form>
@@ -92,26 +93,37 @@
       </td></tr></tbody></table></div> -->
       
     <center>
-      <div style="padding-left: 2%;" id="buttons-container">
-        <h1> 100 JavaScript Problems </h1>
+      <div style="width:100%" id="buttons-container">
+        <h1 style="color:#88b;" class="display-1"> <br> 200 JavaScript Problems </h1>
+        <br>
       </div>
     </center>
     <div id="problem-div"
-    style="display:none;background-color: #eee; height:100%;">
+      style="display:none;background-color: #eee; height:100%;">
       <div style="padding-left:5vw;">
-        <h2 id="problem-name"></h2>
+        <h2 style="color:#88b;" id="problem-name"></h2>
         <p id="problem-description"></p>
-        <br>
+        <center>
+          <button type="button" class="btn" 
+           style="color:#603;border:1px solid #fcc;border-radius: 15px;" id="attempt"
+           onclick="runTests(); return false;"> Attempt </button>
+        </center>
         <p id="problem-examples"></p>
-        <button type="button" onclick="sendCodeAce(); focusEdit(); return false;"> Attempt </button>
-        <div style="border:1px solid #999;min-width:500px;width:40vw;min-height:60vh;" id="editor"></div>
-        <a href="#"> help </a>
+
+        
+        <div id="editor-output-container" style="display: block;">
+          <div style="border:1px solid #999;width:550px;min-height:50vh;max-height:51vh;float:left;" id="editor"></div>
+          <div id="output-table" style="margin-left:600px;"></div>
+          <div style="clear:both;color:#0a0" id="all-pass-message"></div>
+        </div>
+        <a href="#" style="color:black;position:absolute;left:10px;bottom:10px;"
+          onclick="alert('Try using the return keyword. Your code should be between the two curly brackets. { }')"> help </a>
       </div>    
     </div>
-
+    
     <div id="about-page" style="display:none;margin-left: 2%;">
       <div class="jumbotron">
-        <h1 class="display-3">About</h1>
+        <h1 class="display-3" style="color:#88b;">About</h1>
         <p class="lead">
           This website attempts to teach coding to first-time beginners who <br>
           may have never written a line of code. If you enjoy challenges, <br>
@@ -128,736 +140,34 @@
       <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
       </canvas>
     <script>
+      var currentProblemId
       const D = x => document.getElementById(x),
             E = x => document.createElement(x)
 
-      function Problem(name,description,examples,solutionSetup,solution) {
-        this.name=name
-        this.description=description
-        this.examples=examples
-        this.solutionSetup=solutionSetup
-        this.solution=solution
-        this.submission=solutionSetup
-      }
-
-      const problems = [
-          [
-            'myFirstFunction',
-            "Just return the input. If you don't know how to do that, then you should research it. Coders should be good at research.",
-            'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → 27 <br>',
-            'function myFirstFunction(input) {\n  \n}',
-            x => x
-          ],
-          [
-            'sumDouble',
-            'Given two int values, return their sum. But if the two values are the same, then return double their sum.',
-            'sumDouble(1, 2) → 3 <br> sumDouble(3, 2) → 5 <br> sumDouble(2, 2) → 8 <br>',
-            'function add(a, b) {\n  \n}',
-            (a,b) => a === b ? 4 * a : a + b,
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            'example(input) -> exampleOutput',
-            'function code(x) {\n  \n}',
-            x => x
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ],
-          [
-            'fakeMockup',
-            'This website is still under construction.',
-            '',
-            'function code(x) {\n  \n}',
-            'function code(x) {\n  \n}',
-          ]
-      ].map(args => new Problem(...args))
-      
 
       Create_All_Buttons: {
-        for (let i in problems) {
-          const btn = E('button')
+        let color = [250,255,255], row = E('div')
+        for (let i in PROBLEM_DATA) {
+          const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
           btn.type = 'button'
           btn.classList.add('btn')
-          btn.classList.add('btn-secondary')
           btn.style.margin = '5px'
-          btn.style.width = '40px'
-          btn.style.height = '40px'
+          btn.style.width = '80px'
+          btn.style.height = '80px'
+          btn.style.font = '20px Arial'
+          btn.style.background = rgba
+          btn.onmouseover=_=>btn.style.backgroundColor='#aae'
+          btn.onmouseout=_=>btn.style.backgroundColor=rgba
           btn.id = i
-          btn.onclick = _ => showQuestion(btn.id)
+          btn.onclick = _ => (showQuestion(btn.id), currentProblemId = btn.id)
           btn.innerHTML = (+i+1)
-          if (i % 10 === 0) D('buttons-container').appendChild(E('br'))
-          D('buttons-container').appendChild(btn)
+          row.appendChild(btn)
+          if (i % 10 === 9) {            
+            color.forEach((_,i) => color[i] -= 13)
+            row.style.backgroundColor = `rgb(${color.join`,`})`
+            D('buttons-container').appendChild(row)
+            row = E('div')
+          }
         }
       }
 
@@ -867,8 +177,9 @@
         enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
         enableLiveAutocompletion: true, // the editor completes the statement while you are typing
         showPrintMargin: false, // hides the vertical limiting strip
-        maxLines: Infinity,
-        fontSize: "100%" // ensures that the editor fits in the environment
+        fontSize: "100%",
+        maxLines: 1000,
+        autoScrollEditorIntoView: true
       }
     function goHome() { 
       D('about-page').style.display='none'
@@ -886,10 +197,10 @@
       D('problem-div').style.display='block'
       D('buttons-container').style.display='none'
 
-      D('problem-name').innerHTML = problems[n].name
-      D('problem-description').innerHTML = problems[n].description
-      D('problem-examples').innerHTML = problems[n].examples
-      editor.setValue(problems[n].submission)
+      D('problem-name').innerHTML = PROBLEM_DATA[n].name
+      D('problem-description').innerHTML = PROBLEM_DATA[n].description
+      D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
+      editor.setValue(PROBLEM_DATA[n].submission)
       editor.setOptions(options);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
@@ -898,6 +209,68 @@
       editor.navigateLineEnd()
       editor.focus()
 
+    }
+
+    function runTests() {
+       'use strict'
+        let passedAll = true       
+        const output = D('output-table')
+        D('all-pass-message').innerHTML = output.innerHTML = ''
+        // editor.focus()
+        const { functionName, name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
+        var submission
+        while (output.children[0]) output.removeChild(output.children[0])
+        try { 
+          const src = editor.getValue()
+          eval(`${src}; submission = ${functionName}`) 
+        } 
+        catch(e) { output.innerHTML = e }
+        console.log(typeof submission)
+        if (typeof submission !== 'function') {
+          output.innerHTML = `syntax error or ${functionName} needs to be a function.`
+          return 
+        }
+        
+        const table = E('table')
+        addHeaders: { 
+          const row = E('tr'); 
+          ['Expected', 'Actual',''].forEach(r => {
+            const R = E('th'); R.innerHTML = r
+            R.style.backgroundColor = '#eee'
+            row.append(R)
+          })
+          table.append(row) 
+        }
+        table.style.border = '1px solid #bbb'
+        table.style.float = 'left'
+        table.style.width = '40vw'
+        table.style.height = '20px'
+        table.style.margin = '1px'
+        for (let args of testinputs) {
+          try {
+            var actual = submission(...args)
+          } catch (e) {
+            actual = e.toString()
+          }
+          const expected = solution(...args)
+          const pass = actual === expected
+          passedAll = passedAll && pass
+          const row = E('tr')
+          const [A,B,C] = [E('td'),E('td'),E('td')]
+          A.innerHTML = `${functionName}(${args.join`,`}) → ${expected}`
+          B.innerHTML = '' + actual
+          C.style.color = pass ? '#505' : '#fff'
+          C.innerHTML = pass ? 'passed!' : 'failed!'
+          C.style.backgroundColor = pass ? '#0f0' : '#f00';
+          [A,B,C].forEach(x => {
+            x.style.border = '1px solid #bbb'
+            row.append(x)
+          })
+          table.append(row) 
+        }
+        output.append(table)
+
+        D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
     }
 
     </script>
@@ -1000,28 +373,6 @@
         });
       }
 
-
-
-
-
-
-
-
-
-      
-      // function createLogin(username,password) {
-      //   let req = new XMLHttpRequest();
-      //   req.onreadystatechange = () => {
-      //     if (req.readyState == 4) {
-      //       console.log(req.responseText);
-      //     }
-      //   };
-      //   req.open("get", "https://api.jsonbin.io/b", true);
-      //   req.setRequestHeader("Content-type","application/json")
-      //   req.setRequestHeader("secret-key","$2a$10$BWsymsq4Cu29w1ofA1GzsuOgLqUVbG9kw5jxzMY1Y9Dc5k6DpWQjO")
-      //   req.send(JSON.stringify({username:new User(username,password)}));
-      // }
-      // createLogin('God','qwertyuiopasdfghjklzxcvbnm')
 
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
