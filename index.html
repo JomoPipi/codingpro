@@ -143,6 +143,7 @@
       var currentProblemId
       const D = x => document.getElementById(x),
             E = x => document.createElement(x)
+      const output = D('output-table')
 
 
       Create_All_Buttons: {
@@ -193,6 +194,7 @@
     }
 
     function showQuestion(n) {
+      while (output.children[0]) output.removeChild(output.children[0])
       D('about-page').style.display='none'
       D('problem-div').style.display='block'
       D('buttons-container').style.display='none'
@@ -214,7 +216,6 @@
     function runTests() {
        'use strict'
         let passedAll = true       
-        const output = D('output-table')
         D('all-pass-message').innerHTML = output.innerHTML = ''
         // editor.focus()
         const { functionName, name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
