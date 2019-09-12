@@ -1,358 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
-    <title>         Codingpro         </title>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
-    <script src="problem_data.js"></script>
-    <script src="ace.js"></script>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
-      <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
 
 
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="aboutPage()">         About         </a>
-        </li>
-        
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-          <form class="form-inline my-2 my-lg-0">
-            <button class="btn my-2 my-sm-0" style="color:black;" 
-              type="submit">         Log In         </button>
-          </form>
-          <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-primary my-2 my-sm-0" style="color:black;border-top-right-radius:9px;" 
-              type="submit">         Create Account         </button>
-          </form>
-      </form>
-    </div>
-  </nav>
-    
-    <!-- <div style="float:right;  margin:0px; border: 1px solid lightgray;">
-      <table><form method="post" action="/login">
-      </form><tbody><tr><td>id/email</td><td>
-        <input type="text" name="uname" size="20">
-      </td>
-    </tr>
-    <tr>
-      <td>password</td>
-      <td>
-        <input type="password" name="pw" size="20">
-      </td>
-    </tr>
-    <tr>
-      <td>
 
-      </td>
-      <td>
-        <input type="submit" name="dologin" value="log in">
-      </td>
-    </tr>
-     <input type="hidden" name="fromurl" value="/java"><tr>
-       <td><a href="/reset">         forgot password         </a> |
-       <td><a href="/reset">         create account         </a> 
-      </td></tr></tbody></table></div> -->
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
+      <title>         Codingpro         </title>
+      <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+      <script src="problem_data.js"></script>
+      <script src="ace.js"></script>
+  </head>
+
+
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
+        <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
-    
-    <div id="about-page" style="display:none;margin: 2%;">
-      <div class="jumbotron">
-        <h1 class="display-3" style="color:#88b;">         About         </h1>
-        <p class="lead">
-          This website attempts to teach coding to first-time beginners who <br>
-          may have never written a line of code. If you enjoy challenges, <br>
-            then this is for you.
-        </p>
-        <hr class="my-4">
-        <p style="font-size: 2em;">
-        </p>
-        <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
-      </div>
-        <a data-toggle="dropdown" 
-        href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
-        aria-expanded="true">         More learning resources         </a>
-        <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-          <a class="dropdown-header"> - other free coding websites - </a>
-          <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
-          <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
-          <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
-          <a class="dropdown-header"> - papers - </a>
-          <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
-          <a class="dropdown-header"> - videos - </a>
-          <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
-          <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
-          <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
-          <a class="dropdown-header"> - games - </a>
-          <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">submit suggestion</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="aboutPage()">         About         </a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0">
+                  <button class="btn my-2 my-sm-0" style="color:#333;" 
+                    onclick="logInPage()" type="submit">         Log In         </button>
+                </form>
+                <form class="form-inline my-2 my-lg-0">
+                  <button class="btn btn-primary my-2 my-sm-0" style="color:#333;border-top-right-radius:9px;" 
+                    onclick="signUpPage()" type="submit">         Create Account         </button>
+                </form>
+            </form>
         </div>
-    </div>
-
-    <center>
-      <div style="width:100%" id="buttons-container">
-        <h1 style="color:#88b;" class="display-2"> <br>         200 JavaScript Problems         </h1>
-        <br>
-      </div>
-    </center>
-    <div id="problem-div"
-      style="display:none;background-color: #fff; height:100%;">
-      <div style="padding-left:2vw;">
-        <h2 style="color:#88b;" id="problem-name"></h2>
-        <p style="float:left;"></p>
-        <a href="#" style="color:#003;" onclick="currentProblemId?showQuestion(currentProblemId-1):0"> previous </a>
-        <a href="#" style="color:#300;" onclick="currentProblemId<PROBLEM_DATA.length?showQuestion(currentProblemId+1):0"> next </a> &nbsp; 
-        <a href="#" style="color: rgba(100,100,100,0.4);" onclick="
-        let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
-        "> help </a>
-        <br> <br>
-        <p id="problem-description"></p>
-          
-        <p id="problem-examples"></p> 
-        <p style="left: 37vw;float:left;"></p>
-        
-        <button type="button" class="btn" 
-        style="color:#603;border:1px solid #fcc;border-radius: 15px;" id="attempt"
-        onclick="runTests(); return false;">         Attempt         </button>
-
-
-        
-        <div id="editor-output-container" style="display: block;clear:both;">
-          <div style="border:1px solid #999;width:50vw;min-height:55vh;max-height:55vh;float:left;" id="editor"></div>
-          <div id="output-table" style="margin-left:55vw;"></div>
-          <div style="color:#0a0;margin-left:55vw;" id="all-pass-message"></div>
-        </div>
-        <span id="hint"></span>
-      </div>    
-    </div>
-    
-
+    </nav>
       
-      <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
-      </canvas>
-    <script>
-      var currentProblemId
-      const D = x => document.getElementById(x),
-            E = x => document.createElement(x)
-      const output = D('output-table')
+      <div id="about-page" style="display:none;margin: 2%;">
+        <div class="jumbotron">
+          <h1 class="display-3" style="color:#87a;">         About         </h1>
+          <p class="lead">
+            This website attempts to teach coding to first-time beginners who <br>
+            may have never written a line of code. If you enjoy challenges, <br>
+              then this is for you.
+          </p>
+          <hr class="my-4">
+          <p style="font-size: 2em;">
+          </p>
+          <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
+        </div>
+          <a data-toggle="dropdown" 
+          href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
+          aria-expanded="true">         More learning resources         </a>
+          <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-header"> - other free coding websites - </a>
+            <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
+            <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
+            <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
+            <a class="dropdown-header"> - papers - </a>
+            <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
+            <a class="dropdown-header"> - videos - </a>
+            <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
+            <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
+            <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
+            <a class="dropdown-header"> - games - </a>
+            <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">submit suggestion</a>
+          </div>
+      </div>
 
-      Create_All_Buttons_Once_When_The_Page_Loads: {
-        let color = [248,253,253], row = E('div')
-        for (let i in PROBLEM_DATA) {
-          const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
-          btn.type = 'button'
-          btn.classList.add('btn')
-          btn.style.margin = '5px'
-          btn.style.width = '80px'
-          btn.style.height = '80px'
-          btn.style.font = '20px Arial'
-          btn.style.background = rgba
-          btn.style.transition = 'all 0.5s ease'
-          btn.onmouseover=_=>btn.style.backgroundColor='#aae'
-          btn.onmouseout=_=>btn.style.backgroundColor=rgba
-          btn.id = +i
-          btn.onclick = _ => showQuestion(btn.id)
-          btn.innerHTML = (+i+1)
-          row.appendChild(btn)
-          if (i % 10 === 9) {            
-            row.style.backgroundColor = `rgb(${color.join`,`})`
-            color.forEach((_,i) => color[i] -= 13)
-            D('buttons-container').appendChild(row)
-            row = E('div')
+      <center>
+        <div style="width:100%;" id="main-page">
+          <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
+          <br>
+        </div>
+        
+
+
+        <div style="display:none; width:100%" id="sign-up-page">
+          <h1 style="color:#87a;" class="display-4"> <br>         Create Account         </h1>
+          <br>
+          <div>
+            <table>
+              <tbody>
+                  <tr><td>id/email</td><td>  <input type="text" name="uname" size="20"></td></tr>
+                  <tr><td>password</td><td>  <input type="password" name="pw" size="20"></td></tr>
+                  <tr><td>confirm </td><td>  <input type="password" name="pw" size="20"></td></tr>
+                  <tr><td></td><td>  <input type="submit" name="dologin" value="go"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+        <div style="display:none; width:100%" id="log-in-page">
+          <h1 style="color:#87a;" class="display-4"> <br>         Log In         </h1>
+          <br>
+          <div>
+            <table>
+              <tbody>
+                <tr><td>id/email</td><td>  <input type="text" name="uname" size="20"></td></tr>
+                <tr><td>password</td><td>  <input type="password" name="pw" size="20"></td></tr>
+                <tr><td></td><td>  <input type="submit" name="dologin" value="go"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </center>
+
+
+      <div id="problem-page"
+        style="display:none;background-color: #fff; height:100%;">
+        <div style="padding-left:2vw;">
+          <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
+          <p style="float:left;"></p>
+          <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         previous         </a>
+          &nbsp; | &nbsp;
+          <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
+          let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
+          ">         help         </a>
+          <br> <br>
+          <p id="problem-description"></p>
+            
+          <p style="float:left;width:43vw;" id="problem-examples"></p> 
+
+          <button type="button" class="btn" 
+          style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; 
+          border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
+          onclick="runTests(); return false;">         Attempt         </button>
+
+
+          <div id="editor-output-container" style="display: block;clear:both;">
+            <div style="border:1px solid #999;width:50vw;min-height:50vh;max-height:50vh;float:left;" id="editor"></div>
+            <div id="output-table" style="margin-left:55vw;"></div>
+            <div style="color:#0a0;margin-left:55vw;" id="all-pass-message"></div>
+          </div>
+          <span id="hint"></span>
+        </div>    
+      </div>
+      
+
+        
+        <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
+        </canvas>
+      <script>
+        var currentProblemId
+        const D = x => document.getElementById(x),
+              E = x => document.createElement(x)
+        const output = D('output-table')
+
+        Create_All_Buttons_Once_When_The_Page_Loads: {
+          let color = [248,253,253], row = E('div')
+          for (let i in PROBLEM_DATA) {
+            const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
+            btn.type = 'button'
+            btn.classList.add('btn')
+            btn.style.margin = '5px'
+            btn.style.width = '80px'
+            btn.style.height = '80px'
+            btn.style.font = '20px Arial'
+            btn.style.background = rgba
+            btn.style.transition = 'all 0.5s ease'
+            btn.onmouseover=_=>btn.style.backgroundColor='#aae'
+            btn.onmouseout=_=>btn.style.backgroundColor=rgba
+            btn.id = +i
+            btn.onclick = _ => showQuestion(btn.id)
+            btn.innerHTML = (+i+1)
+            row.appendChild(btn)
+            if (i % 10 === 9) {            
+              row.style.backgroundColor = `rgb(${color.join`,`})`
+              color.forEach((_,i) => color[i] -= 13)
+              D('main-page').appendChild(row)
+              row = E('div')
+            }
           }
         }
-      }
 
 
-      var editor = window.ace.edit(D("editor"));
-      const options = {
-        // fontFamily: "monospace",
-        enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
-        enableLiveAutocompletion: true, // the editor completes the statement while you are typing
-        showPrintMargin: false, // hides the vertical limiting strip
-        fontSize: "100%",
-        maxLines: 1000,
-        autoScrollEditorIntoView: true
-      }
-    function goHome() { hideAllPagesExcept(D('buttons-container')) }
-
-    function aboutPage() { hideAllPagesExcept(D('about-page')) }
-
-    function clearOutputLog() {
-      D('all-pass-message').innerHTML = output.innerHTML = ''
-      while (output.children[0]) output.removeChild(output.children[0])
-      editor.focus()
-    }
-    function hideAllPagesExcept(x) {
-      D('hint').innerHTML = ''
-      D('about-page').style.display='none'
-      D('problem-div').style.display='none'
-      D('buttons-container').style.display='none'
-      if (x) x.style.display='block'
-    }
-
-    function showQuestion(n) {
-      currentProblemId = +n
-      console.log(n,typeof n)
-      clearOutputLog()
-      D('about-page').style.display='none'
-      D('problem-div').style.display='block'
-      D('buttons-container').style.display='none'
-
-      D('problem-name').innerHTML = PROBLEM_DATA[n].name
-      D('problem-description').innerHTML = PROBLEM_DATA[n].description
-      D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
-      editor.setValue(PROBLEM_DATA[n].submission)
-      editor.setOptions(options);
-      editor.setTheme("ace/theme/chrome");
-      editor.getSession().setMode("ace/mode/javascript");
-      var row = editor.session.getLength() - 2
-      editor.selection.moveTo(row)
-      editor.navigateLineEnd()
-    }
-
-    function runTests() {
-      'use strict'
-      let passedAll = true       
-      clearOutputLog()
-      const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
-      var submission
-      try { 
-        const src = editor.getValue()
-        eval(`${src}; submission = ${name}`) 
-      } 
-      catch(e) { output.innerHTML = e }
-      console.log(submission)
-      if (typeof submission !== 'function') {
-        output.innerHTML = `syntax error or ${name} needs to be a function.`
-        return; 
-      }
-      
-      const table = E('table')
-      addHeaders: { 
-        const row = E('tr'); 
-        ['Expected', 'Actual',''].forEach(r => {
-          const R = E('th'); R.innerHTML = r
-          R.style.border = '1px solid #bbb'
-          R.style.backgroundColor = '#eee'
-          row.append(R)
-        })
-        table.append(row) 
-      }
-      table.style.border = '1px solid #bbb'
-      table.style.float = 'left'
-      table.style.width = '40vw'
-      table.style.height = '20px'
-      table.style.margin = '1px'
-      for (let args of testinputs) {
-        try {
-          var actual = submission(...args)
-        } catch (e) {
-          actual = e.toString()
+        var editor = window.ace.edit(D("editor"));
+        editor.renderer.setShowGutter(false);
+        const options = {
+          enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
+          enableLiveAutocompletion: true, // the editor completes the statement while you are typing
+          showPrintMargin: false, // hides the vertical limiting strip
+          fontSize: "100%",
+          maxLines: 1000,
+          autoScrollEditorIntoView: true,
         }
-        const expected = solution(...args)
-        const pass = actual === expected
-        passedAll = passedAll && pass
-        const row = E('tr')
-        const [A,B,C] = [E('td'),E('td'),E('td')]
-        A.innerHTML = `${name}(${args.join`,`}) → ${expected}`
-        B.innerHTML = '' + actual
-        C.style.color = pass ? '#505' : '#fff'
-        C.innerHTML = pass ? 'passed!' : 'failed!'
-        C.style.backgroundColor = pass ? '#0f0' : '#f00';
-        [A,B,C].forEach(x => {
-          x.style.border = '1px solid #bbb'
-          row.append(x)
-        })
-        table.append(row) 
+      function goHome() { hideAllPagesExcept(D('main-page')) }
+      function aboutPage() { hideAllPagesExcept(D('about-page')) }
+      function logInPage() { hideAllPagesExcept(D('log-in-page')) }
+      function signUpPage() { hideAllPagesExcept(D('sign-up-page')) }
+
+      function clearOutputLog() {
+        D('all-pass-message').innerHTML = D('hint').innerHTML = output.innerHTML = ''
+        while (output.children[0]) output.removeChild(output.children[0])
+        editor.focus()
       }
-      output.append(table)
-
-      D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
-    }
-
-    </script>
-
-    <script>
-      
-      const config = {
-        apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
-        authDomain: "codingpro-5c5d9.firebaseapp.com",
-        databaseURL: "https://codingpro-5c5d9.firebaseio.com",
-        projectId: "codingpro-5c5d9",
-        storageBucket: "codingpro-5c5d9.appspot.com",
-        messagingSenderId: "350756630303",
-        appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
-      };
-
-      firebase.initializeApp(config);
-
-      // Initialize Cloud Firestore through Firebase
-      const db = firebase.firestore();
-      // db.settings({ timestampsInSnapshots: true })
-
-      function renderDoc(doc) {
-        console.log('doc.data',doc.data())
+      function hideAllPagesExcept(x) {
+        D('sign-up-page').style.display='none'
+        D('problem-page').style.display='none'
+        D('log-in-page').style.display='none'
+        D('about-page').style.display='none'
+        D('main-page').style.display='none'
+        if (x) x.style.display='block'
       }
 
-      // db.collection('users').get().then(snapshot => {
-      //     snapshot.docs.forEach(renderDoc)
-      // })
+      function showQuestion(n) {
+        currentProblemId = +n
+        const a = currentProblemId === 0, b = currentProblemId === PROBLEM_DATA.length-1 
 
-      // db.collection("users").add({
-      //     first: "Ada",
-      //     last: "Lovelace",
-      //     born: 1815
-      // })
-      // .then(function(docRef) {
-      //     console.log("Document written with ID: ", docRef.id);
-      // })
-      // .catch(function(error) {
-      //     console.error("Error adding document: ", error);
-      // });
+        with (D('previous')) {
+          style.pointerEvents = a ? 'none' : 'auto'  
+          style.color =         a ? '#444' : '#87a'
+          style.cursor =        a ? 'default' : 'pointer'
+        }
+        with (D('next')) {
+          style.pointerEvents = b ? 'none' : 'auto'  
+          style.color =         b ? '#444' : '#87a'
+          style.cursor =        b ? 'default' : 'pointer'
+        }
 
-      function User(login,password) {
-        this.login = login
-        this.password = password
-        this.completions = []
-        this.submissions = []
+        clearOutputLog()
+        D('about-page').style.display='none'
+        D('problem-page').style.display='block'
+        D('main-page').style.display='none'
+
+        D('problem-name').innerHTML = PROBLEM_DATA[n].name
+        D('problem-description').innerHTML = PROBLEM_DATA[n].description
+        D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
+        editor.setValue(PROBLEM_DATA[n].submission)
+        editor.setOptions(options);
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/javascript");
+        var row = editor.session.getLength() - 2
+        editor.selection.moveTo(row)
+        editor.navigateLineEnd()
       }
 
-      function signUp(email,password) {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorMessage)
-        });
+      function runTests() {
+        'use strict'   
+        clearOutputLog()
+        
+        if (!arguments[0]) {
+          output.innerHTML = 'running tests...'
+          setTimeout(_ => runTests(true) , Math.random()*500 | 0)
+          return
+        }
+
+        let passedAll = true    
+        const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
+        var submission
+        try { 
+          const src = editor.getValue()
+          eval(`${src}; submission = ${name}`) 
+        } 
+        catch(e) { output.innerHTML = e }
+        console.log(submission)
+        if (typeof submission !== 'function') {
+          output.innerHTML = `syntax error or ${name} needs to be a function.`
+          return; 
+        }
+        
+        const table = E('table')
+        addHeaders: { 
+          const row = E('tr'); 
+          ['Expected', 'Actual',''].forEach(r => {
+            const R = E('th')
+            R.innerHTML = r
+            row.append(R)
+          })
+          table.append(row) 
+        }
+        table.style.float = 'left'
+        table.style.width = '40vw'
+        table.style.height = '20px'
+        table.style.margin = '1px'
+        for (let args of testinputs) {
+          try {
+            var actual = submission(...args)
+          } catch (e) {
+            actual = e.toString()
+          }
+          const expected = solution(...args)
+          const pass = actual === expected
+          passedAll = passedAll && pass
+          const row = E('tr')
+          const [A,B,C] = [E('td'),E('td'),E('td')]
+          A.innerHTML = `${name}(${args.join`,`}) → ${expected}`
+          B.innerHTML = '' + actual
+          C.style.color = pass ? '#505' : '#fff'
+          C.innerHTML = pass ? 'passed!' : 'failed!'
+          C.style.backgroundColor = pass ? '#0f0' : '#f00';
+          [A,B,C].forEach(x => {
+            x.style.border = '1px solid #bbb'
+            row.append(x)
+          })
+          table.append(row) 
+        }
+        output.append(table)
+
+        D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
       }
-      // signUp('ronaldmcorona@gmail.com','easypass123')
 
-      function signIn(email,password) {
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorMessage)
-        });
-      }
+      </script>
+
+      <script>
+        
+        const config = {
+          apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
+          authDomain: "codingpro-5c5d9.firebaseapp.com",
+          databaseURL: "https://codingpro-5c5d9.firebaseio.com",
+          projectId: "codingpro-5c5d9",
+          storageBucket: "codingpro-5c5d9.appspot.com",
+          messagingSenderId: "350756630303",
+          appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
+        };
+
+        firebase.initializeApp(config);
+
+        // Initialize Cloud Firestore through Firebase
+        const db = firebase.firestore();
+        // db.settings({ timestampsInSnapshots: true })
+
+        function renderDoc(doc) {
+          console.log('doc.data',doc.data())
+        }
+
+        // db.collection('users').get().then(snapshot => {
+        //     snapshot.docs.forEach(renderDoc)
+        // })
+
+        // db.collection("users").add({
+        //     first: "Ada",
+        //     last: "Lovelace",
+        //     born: 1815
+        // })
+        // .then(function(docRef) {
+        //     console.log("Document written with ID: ", docRef.id);
+        // })
+        // .catch(function(error) {
+        //     console.error("Error adding document: ", error);
+        // });
+
+        function User(login,password) {
+          this.login = login
+          this.password = password
+          this.completions = []
+          this.submissions = []
+        }
+
+        function signUp(email,password) {
+          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage)
+          });
+        }
+        // signUp('ronaldmcorona@gmail.com','easypass123')
+
+        function signIn(email,password) {
+          firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage)
+          });
+        }
 
 
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-</body>
+  </body>
 </html>

@@ -1,4 +1,4 @@
-function Problem(name,description,examples,solutionSetup,solution,testinputs,hint) {
+function Problem(name,description,examples,solutionSetup,solution,testinputs,hint,authorSolution) {
     this.name=name
     this.description=description
     this.examples=examples
@@ -7,12 +7,13 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
     this.submission=solutionSetup
     this.testinputs=testinputs
     this.hint=hint
+    this.authorSolution = authorSolution
 }
 
 const PROBLEM_DATA = [
     [
       'myFirstFunction',
-      "Just return the input. If you don't know how to do that, then you should research it. Coders should be good at research.",
+      "Just return the input.<br> If you don't know how to do that, then you should research it. Coders should be good at research.",
       'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → 27 <br>',
       'function myFirstFunction(input) {\n  \n}',
       x => x,
@@ -35,11 +36,11 @@ const PROBLEM_DATA = [
       'function sumDouble(a, b) {\n  \n}',
       (a,b) => a === b ? 4 * a : a + b,
       [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[-3,3]],
-      'hint coming soon'
+      'If-statements are one of the most common things you will use when programming. <br> Here is an example program you can study:<br> <span style="font-family:monospace;"> function equals2(x) { <br>&nbsp; if (x == 2) return true; <br>&nbsp; return false; <br> } <br> equals2(2) </span> evaluates to true, and <span style="font-family:monospace;"> equals2(3) </span> evaluates to false. <br> If you\'d like to see for yourself, open the developer tools tab on your browser, <br> and paste the code into the console. Then type <span style="font-family:monospace;"> equals2(2) </span> and press enter.'
     ],
     [
       'fakeMockup',
-      'This website is still under construction. <br> long text <br> bla bla bla <br> scroll <br> .',
+      'This website is still under construction.',
       'example(input) -> exampleOutput',
       'function code(x) {\n  \n}',
       x => x,
