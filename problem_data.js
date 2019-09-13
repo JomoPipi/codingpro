@@ -47,12 +47,12 @@ const PROBLEM_DATA = [
       ['a','b','c','d']
     ],
     [
-      'fakeMockup',
+      'code',
       'This website is still under construction.',
       'example(input) -> exampleOutput',
       'function code(x) {\n  \n}',
       x => x,
-      ['a','b','c','d']
+      [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43]]
     ],
     [
       'fakeMockup',

@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
-      <title>         Codingpro         </title>
+      <title>         CodingPro         </title>
       <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
@@ -19,8 +19,8 @@
 
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
-        <a class="navbar-brand" href="#" onclick="goHome()" >         CodingPro         </a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;padding-left:2vw;padding-right:2vw;">
+        <a class="navbar-brand" href="#"  onclick="goHome()" >         CodingPro         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,17 +34,29 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <form class="form-inline my-2 my-lg-0">
-                  <button class="btn my-2 my-sm-0" style="color:#333;" 
-                    onclick="logInPage()" type="submit">         Log In         </button>
+                  <div class="btn my-2 my-sm-0" style="color:#333;" class="log-in-sign-in"
+                    onclick="logInPage()">         Log In         </div>
                 </form>
                 <form class="form-inline my-2 my-lg-0">
-                  <button class="btn btn-primary my-2 my-sm-0" style="color:#333;border-top-right-radius:9px;" 
-                    onclick="signUpPage()" type="submit">         Create Account         </button>
+                  <div class="btn btn-primary my-2 my-sm-0" style="color:#333;border-top-right-radius:9px;" 
+                    onclick="signUpPage()">         Create Account         </div>
                 </form>
             </form>
         </div>
     </nav>
-      
+
+
+
+
+      <center>
+        <div style="width:100%;" id="main-page">
+          <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
+          <br>
+        </div>
+      </center>
+
+
+
       <div id="about-page" style="display:none;margin: 2%;">
         <div class="jumbotron">
           <h1 class="display-3" style="color:#87a;">         About         </h1>
@@ -80,12 +92,6 @@
       </div>
 
       <center>
-        <div style="width:100%;" id="main-page">
-          <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
-          <br>
-        </div>
-        
-
 
         <div style="display:none; width:100%" id="sign-up-page">
           <h1 style="color:#87a;" class="display-4"> <br>         Create Account         </h1>
@@ -120,43 +126,49 @@
 
       </center>
 
+      <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
+      padding-right:2vw; padding-left:2vw; ">
 
-      <div id="problem-page"
-        style="display:none;background-color: #fff; height:100%;">
-        <div style="padding-left:2vw;">
-          <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
-          <p style="float:left;"></p>
-          <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         previous         </a>
-          &nbsp; | &nbsp;
-          <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
-          let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
-          ">         help         </a>
-          <br> <br>
-          <p id="problem-description"></p>
+        <div name="left-div" style="float:left; width:50vw;">
+            <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
+            <p style="float:left;"></p>
+            <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         prev         </a>
+            &nbsp; | &nbsp;
+            <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
+            &nbsp; | &nbsp;
+            <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
+            let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
+            ">         help         </a>
+            <br> <br>
+            <p id="problem-description"></p>
+              
+            <p style="float:left;width:40vw;" id="problem-examples"></p> 
+
+            <button type="button" class="btn" 
+            style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; float:right; 
+            border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
+            onclick="runTests(); return false;">         GO         </button>
+
             
-          <p style="float:left;width:43vw;" id="problem-examples"></p> 
-
-          <button type="button" class="btn" 
-          style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; 
-          border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
-          onclick="runTests(); return false;">         Attempt         </button>
+            <div style="border:1px solid #999;width:100%; clear: both;
+            min-height:50vh;max-height:50vh;"            id="editor"            ></div>
+        </div>
 
 
-          <div id="editor-output-container" style="display: block;clear:both;">
-            <div style="border:1px solid #999;width:50vw;min-height:50vh;max-height:50vh;float:left;" id="editor"></div>
-            <div id="output-table" style="margin-left:55vw;"></div>
-            <div style="color:#0a0;margin-left:55vw;" id="all-pass-message"></div>
-          </div>
-          <span id="hint"></span>
+        <div name="right-div" style="float: right; width:42vw; padding: 2%; padding-top: 12vh;">
+          <div             id="output-table"              style="width:100%;"></div>
+
+          <div style="color:#0a0;" id="all-pass-message"></div>
+          <div id="hint"></div>
         </div>    
+
       </div>
       
 
         
         <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
         </canvas>
+      <script src="safeEval.js"></script>
       <script>
         var currentProblemId
         const D = x => document.getElementById(x),
@@ -226,12 +238,12 @@
 
         with (D('previous')) {
           style.pointerEvents = a ? 'none' : 'auto'  
-          style.color =         a ? '#444' : '#87a'
+          style.color =         a ? '#999' : '#87a'
           style.cursor =        a ? 'default' : 'pointer'
         }
         with (D('next')) {
           style.pointerEvents = b ? 'none' : 'auto'  
-          style.color =         b ? '#444' : '#87a'
+          style.color =         b ? '#999' : '#87a'
           style.cursor =        b ? 'default' : 'pointer'
         }
 
@@ -264,15 +276,17 @@
 
         let passedAll = true    
         const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
+        const printOutput = [], super_log = console.log
         var submission
         try { 
           const src = editor.getValue()
-          eval(`${src}; submission = ${name}`) 
+          console.log = (...xs) => printOutput.push(xs.join` `); 
+          eval('try{' + src +'\n; submission =' + name + '} catch(e) { submission = e.toString() } ') 
         } 
-        catch(e) { output.innerHTML = e }
-        console.log(submission)
+        catch(e) { output.innerHTML = e.toString() }
         if (typeof submission !== 'function') {
-          output.innerHTML = `syntax error or ${name} needs to be a function.`
+          output.innerHTML = submission || `syntax error or ${name} needs to be a function.`
+          console.log = super_log
           return; 
         }
         
@@ -286,8 +300,9 @@
           })
           table.append(row) 
         }
+
         table.style.float = 'left'
-        table.style.width = '40vw'
+        table.style.width = '100%'
         table.style.height = '20px'
         table.style.margin = '1px'
         for (let args of testinputs) {
@@ -299,10 +314,11 @@
           const expected = solution(...args)
           const pass = actual === expected
           passedAll = passedAll && pass
+          const convert = x => ({"string":'"'+x+'"'})[typeof x] || x
           const row = E('tr')
           const [A,B,C] = [E('td'),E('td'),E('td')]
-          A.innerHTML = `${name}(${args.join`,`}) → ${expected}`
-          B.innerHTML = '' + actual
+          A.innerHTML = `${name}(${args.map(convert).join` `}) → ${convert(expected)}`
+          B.innerHTML = '' + convert(actual)
           C.style.color = pass ? '#505' : '#fff'
           C.innerHTML = pass ? 'passed!' : 'failed!'
           C.style.backgroundColor = pass ? '#0f0' : '#f00';
@@ -312,9 +328,33 @@
           })
           table.append(row) 
         }
-        output.append(table)
+        const tableContainer = E('div')
+        tableContainer.style.overflowY = 'scroll'
+        tableContainer.style.overflowX = 'hidden'
+        tableContainer.style.maxHeight = '40vh'
+        tableContainer.style.backgroundColor ='#ddd'
+        tableContainer.style.borderLeft = tableContainer.style.borderTop = '1px solid #aaa'
+        tableContainer.style.borderRight = tableContainer.style.borderBottom = '1px solid #ccc'
+        tableContainer.append(table)
+        output.append(tableContainer)
 
         D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
+
+        
+        const logOutput = E('div')
+        { const style = logOutput.style
+          style.clear = 'both'
+          style.width = '100%'
+          style.marginTop = '2%'
+          style.overflowY = 'scroll'
+          style.maxHeight = '30vh'
+          style.borderLeft = style.borderTop = '2px solid #aaa'
+          style.borderRight = style.borderBottom = '2px solid #ccc'
+        }
+        logOutput.innerHTML = printOutput.map(x=>' &nbsp; '+x).join`<br>`
+        if (printOutput.length) output.append(logOutput)
+        
+        console.log = super_log
       }
 
       </script>
