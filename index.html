@@ -258,7 +258,7 @@
         
         if (!arguments[0]) {
           output.innerHTML = 'running tests...'
-          setTimeout(_ => runTests(true) , Math.random()*500 | 0)
+          setTimeout(_ => runTests(true) , Math.random()*200 + 300 | 0)
           return
         }
 
