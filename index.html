@@ -136,6 +136,8 @@
             &nbsp; | &nbsp;
             <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
             &nbsp; | &nbsp;
+            <a id="next" href="#" style="color:#87a;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
+            &nbsp; | &nbsp;
             <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
             let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
             ">         help         </a>
@@ -262,6 +264,11 @@
         var row = editor.session.getLength() - 2
         editor.selection.moveTo(row)
         editor.navigateLineEnd()
+      }
+
+      function resetQuestion(n) {
+        if (confirm('Are you sure you erase all your work?'))
+          editor.setValue(PROBLEM_DATA[n].solutionSetup)
       }
 
       function runTests() {
