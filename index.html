@@ -2,28 +2,6 @@
 <html lang="en">
 
 
-
-  <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script>
-  <script>
-    const client = stitch.Stitch.initializeDefaultAppClient('codingpro-mdyat');
-
-    const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('CodingPro');
-
-    client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(user =>
-      db.collection('CodingPro').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
-    ).then(() =>
-      db.collection('CodingPro').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
-    ).then(docs => {
-        console.log("Found docs", docs)
-        console.log("[MongoDB Stitch] Connected to Stitch")
-    }).catch(err => {
-      console.error(err)
-    });
-  </script>
-
-
-
-
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,10 +98,11 @@
           <div>
             <table>
               <tbody>
-                  <tr><td>id/email</td><td>  <input type="text" name="uname" size="20"></td></tr>
-                  <tr><td>password</td><td>  <input type="password" name="pw" size="20"></td></tr>
-                  <tr><td>confirm </td><td>  <input type="password" name="pw" size="20"></td></tr>
-                  <tr><td></td><td>  <input type="submit" name="dologin" value="go"></td></tr>
+                  <tr><td>id/email</td><td>  <input type="text" id="create-uname" size="20"></td></tr>
+                  <tr><td>password</td><td>  <input type="password" id="create-pw" size="20"></td></tr>
+                  <tr><td>confirm </td><td>  <input type="password" id="create-pw2" size="20"></td></tr>
+                  <tr><td></td><td>  <input type="submit" onclick="createAccount(
+                    D('create-uname').value,D('create-pw').value, D('create-pw2').value)" value="go"></td></tr>
               </tbody>
             </table>
           </div>
@@ -137,9 +116,10 @@
           <div>
             <table>
               <tbody>
-                <tr><td>id/email</td><td>  <input type="text" name="uname" size="20"></td></tr>
-                <tr><td>password</td><td>  <input type="password" name="pw" size="20"></td></tr>
-                <tr><td></td><td>  <input type="submit" name="dologin" value="go"></td></tr>
+                <tr><td>id/email</td><td>  <input type="text" id="login-uname" size="20"></td></tr>
+                <tr><td>password</td><td>  <input type="password" id="login-pw" size="20"></td></tr>
+                <tr><td></td><td>  <input type="submit" onclick="
+                  logIn(D('login-uname').value,D('login-pw').value)" value="go"></td></tr>
               </tbody>
             </table>
           </div>
@@ -385,10 +365,14 @@
         console.log = super_log
       }
 
-      </script>
 
-      <script>
-        
+
+
+
+
+
+
+
         const config = {
           apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
           authDomain: "codingpro-5c5d9.firebaseapp.com",
@@ -402,28 +386,42 @@
         firebase.initializeApp(config);
 
         // Initialize Cloud Firestore through Firebase
-        // const db = firebase.firestore();
-        // db.settings({ timestampsInSnapshots: true })
+        const db = firebase.firestore();
 
-        // function renderDoc(doc) {
-        //   console.log('doc.data',doc.data())
-        // }
+        function createAccount(email,password,pw2) {
+          if (password !== pw2) return console.log('The passwords don\'t match')
+          let success = [true]
+          db.collection('users').get().then(snapshot => {
+            if (snapshot.docs.some(doc => 
+            doc.data().email.toLowerCase() === email.toLowerCase())) {
+              console.log('happens')
+              success[0] = false
+            }
+          }).then(_ => {
+            console.log('success =',success)
+            if (!success[0]) { console.log('This email is already in use.'); return; }
 
-        // db.collection('users').get().then(snapshot => {
-        //     snapshot.docs.forEach(renderDoc)
-        // })
-
-        // db.collection("users").add({
-        //     first: "Ada",
-        //     last: "Lovelace",
-        //     born: 1815
-        // })
-        // .then(function(docRef) {
-        //     console.log("Document written with ID: ", docRef.id);
-        // })
-        // .catch(function(error) {
-        //     console.error("Error adding document: ", error);
-        // });
+            db.collection("users").add({
+                email: email.toLowerCase(),
+                password: password,
+                completions:[],
+                submissions:[]
+            })
+            console.log("Account created.");
+          })
+        }
+        function logIn(email,password) {
+          db.collection('users').get().then(snapshot => {
+              snapshot.docs.forEach(doc => {
+                if (doc.data().email.toLowerCase() === email && 
+                    doc.data().password === password) {
+                  console.log('successfully logged in')
+                  return;
+                }
+              })
+              console.log('invalid username or password')
+          })
+        }
 
         // function User(login,password) {
         //   this.login = login
