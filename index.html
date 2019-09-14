@@ -3,6 +3,27 @@
 
 
 
+  <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script>
+  <script>
+    const client = stitch.Stitch.initializeDefaultAppClient('codingpro-mdyat');
+
+    const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('CodingPro');
+
+    client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(user =>
+      db.collection('CodingPro').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
+    ).then(() =>
+      db.collection('CodingPro').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
+    ).then(docs => {
+        console.log("Found docs", docs)
+        console.log("[MongoDB Stitch] Connected to Stitch")
+    }).catch(err => {
+      console.error(err)
+    });
+  </script>
+
+
+
+
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -381,12 +402,12 @@
         firebase.initializeApp(config);
 
         // Initialize Cloud Firestore through Firebase
-        const db = firebase.firestore();
+        // const db = firebase.firestore();
         // db.settings({ timestampsInSnapshots: true })
 
-        function renderDoc(doc) {
-          console.log('doc.data',doc.data())
-        }
+        // function renderDoc(doc) {
+        //   console.log('doc.data',doc.data())
+        // }
 
         // db.collection('users').get().then(snapshot => {
         //     snapshot.docs.forEach(renderDoc)
@@ -404,29 +425,29 @@
         //     console.error("Error adding document: ", error);
         // });
 
-        function User(login,password) {
-          this.login = login
-          this.password = password
-          this.completions = []
-          this.submissions = []
-        }
+        // function User(login,password) {
+        //   this.login = login
+        //   this.password = password
+        //   this.completions = []
+        //   this.submissions = []
+        // }
 
-        function signUp(email,password) {
-          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage)
-          });
-        }
-        // signUp('ronaldmcorona@gmail.com','easypass123')
+        // function signUp(email,password) {
+        //   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     console.log(errorMessage)
+        //   });
+        // }
+        // // signUp('ronaldmcorona@gmail.com','easypass123')
 
-        function signIn(email,password) {
-          firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage)
-          });
-        }
+        // function signIn(email,password) {
+        //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     console.log(errorMessage)
+        //   });
+        // }
 
 
       </script>
