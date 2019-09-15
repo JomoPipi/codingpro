@@ -39,7 +39,6 @@ auth.onAuthStateChanged(user => {
             User.save()
         })
     } else {
-        User.loggedIn = false;
         User.reset()
     }
 })

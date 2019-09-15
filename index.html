@@ -249,7 +249,12 @@
         completions:{},
         submissions:{},
         save: _=>_,
-        reset: _ => (User.completions = {}, User.submissions = {})
+        reset: _ => (
+          User.completions = {}, 
+          User.submissions = {},
+          User.loggedIn = false,
+          User.save = _=>_
+        )
       }
       
 
