@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"></html>
+
+
+
+
+
+
 
 
   <head>
@@ -14,6 +20,11 @@
       <script src="problem_data.js"></script>
       <script src="ace.js"></script>
   </head>
+
+
+
+
+
 
 
 
@@ -47,411 +58,487 @@
 
 
 
-      <center>
-        <div style="width:100%;" id="main-page">
-          <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
-          <br>
-        </div>
-      </center>
 
 
 
-      <div id="about-page" style="display:none;margin: 2%;">
-        <div class="jumbotron">
-          <h1 class="display-3" style="color:#87a;">         About         </h1>
-          <p class="lead">
-            This website attempts to teach coding to first-time beginners who <br>
-            may have never written a line of code. If you enjoy challenges, <br>
-              then this is for you.
-          </p>
-          <hr class="my-4">
-          <p style="font-size: 2em;">
-          </p>
-          <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
-        </div>
-          <a data-toggle="dropdown" 
-          href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
-          aria-expanded="true">         More learning resources         </a>
-          <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
-            <a class="dropdown-header"> - other free coding websites - </a>
-            <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
-            <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
-            <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
-            <a class="dropdown-header"> - papers - </a>
-            <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
-            <a class="dropdown-header"> - videos - </a>
-            <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
-            <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
-            <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
-            <a class="dropdown-header"> - games - </a>
-            <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">submit suggestion</a>
-          </div>
+
+    <center>
+      <div style="width:100%;" id="main-page">
+        <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
+        <br>
       </div>
+    </center>
 
-      <center>
 
-        <div style="display:none; width:100%" id="sign-up-page">
-          <h1 style="color:#87a;" class="display-4"> <br>         Create Account         </h1>
-          <br>
-          <div>
-            <table>
-              <tbody>
-                  <tr><td>id/email</td><td>  <input type="text" id="create-uname" size="20"></td></tr>
-                  <tr><td>password</td><td>  <input type="password" id="create-pw" size="20"></td></tr>
-                  <tr><td>confirm </td><td>  <input type="password" id="create-pw2" size="20"></td></tr>
-                  <tr><td></td><td>  <input type="submit" onclick="createAccount(
-                    D('create-uname').value,D('create-pw').value, D('create-pw2').value)" value="go"></td></tr>
-              </tbody>
-            </table>
-          </div>
+
+
+
+
+
+
+    <div id="about-page" style="display:none;margin: 2%;">
+      <div class="jumbotron">
+        <h1 class="display-3" style="color:#87a;">         About         </h1>
+        <p class="lead">
+          This website attempts to teach coding to first-time beginners who <br>
+          may have never written a line of code. If you enjoy challenges, <br>
+            then this is for you.
+        </p>
+        <hr class="my-4">
+        <p style="font-size: 2em;">
+        </p>
+        <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
+      </div>
+        <a data-toggle="dropdown" 
+        href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
+        aria-expanded="true">         More learning resources         </a>
+        <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+          <a class="dropdown-header"> - other free coding websites - </a>
+          <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
+          <a class="dropdown-item" href="https://codewars.com" target="_blank">Codewars</a>
+          <a class="dropdown-item" href="https://leetcode.com" target="_blank">Leetcode</a>
+          <a class="dropdown-header"> - papers - </a>
+          <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
+          <a class="dropdown-header"> - videos - </a>
+          <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
+          <a class="dropdown-item" href="https://www.youtube.com/watch?v=j1H3jAAGlEA" target="_blank">Learn DFS</a>
+          <a class="dropdown-item" href="https://www.youtube.com/watch?v=gGQ-vAmdAOI" target="_blank">Learn BFS</a>
+          <a class="dropdown-header"> - games - </a>
+          <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">submit suggestion</a>
         </div>
+    </div>
 
 
 
-        <div style="display:none; width:100%" id="log-in-page">
-          <h1 style="color:#87a;" class="display-4"> <br>         Log In         </h1>
-          <br>
-          <div>
-            <table>
-              <tbody>
-                <tr><td>id/email</td><td>  <input type="text" id="login-uname" size="20"></td></tr>
-                <tr><td>password</td><td>  <input type="password" id="login-pw" size="20"></td></tr>
-                <tr><td></td><td>  <input type="submit" onclick="
-                  logIn(D('login-uname').value,D('login-pw').value)" value="go"></td></tr>
-              </tbody>
-            </table>
-          </div>
+
+
+
+
+
+    <center>
+      <div style="display:none; width:100%" id="sign-up-page">
+        <h1 style="color:#87a;" class="display-4"> <br>         Create Account         </h1>
+        <br>
+        <div>
+          <table>
+            <tbody>
+                <div id="create-account-msg"></div>
+                <tr><td>id/email</td><td>  <input type="text" id="create-uname" size="20"></td></tr>
+                <tr><td>password</td><td>  <input type="password" id="create-pw" size="20"></td></tr>
+                <tr><td>confirm </td><td>  <input type="password" id="create-pw2" size="20"></td></tr>
+                <tr><td></td><td>  <input type="submit" onclick="createAccount(
+                  D('create-uname').value,D('create-pw').value, D('create-pw2').value)" value="go"></td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+    </center>
 
-      </center>
 
-      <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
-      padding-right:2vw; padding-left:2vw; ">
 
-        <div name="left-div" style="float:left; width:50vw;">
-            <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
-            <p style="float:left;"></p>
-            <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         prev         </a>
-            &nbsp; | &nbsp;
-            <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
-            &nbsp; | &nbsp;
-            <a id="next" href="#" style="color:#87a;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
-            &nbsp; | &nbsp;
-            <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
-            let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
-            ">         help         </a>
-            <br> <br>
-            <p id="problem-description"></p>
-              
-            <p style="float:left;width:40vw;" id="problem-examples"></p> 
 
-            <button type="button" class="btn" 
-            style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; float:right; 
-            border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
-            onclick="runTests(); return false;">         GO         </button>
 
+
+
+
+    <center>
+      <div style="display:none; width:100%" id="log-in-page">
+        <h1 style="color:#87a;" class="display-4"> <br>         Log In         </h1>
+        <br>
+        <div>
+          <table>
+            <tbody>
+              <div id="login-msg"></div>
+              <tr><td>id/email</td><td>  <input type="text" id="login-uname" size="20"></td></tr>
+              <tr><td>password</td><td>  <input type="password" id="login-pw" size="20"></td></tr>
+              <tr><td></td><td>  <input type="submit" onclick="
+                logIn(D('login-uname').value,D('login-pw').value)" value="go"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </center>
+
+
+
+
+
+
+
+
+    <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
+    padding-right:2vw; padding-left:2vw; ">
+
+      <div name="left-div" style="float:left; width:50vw;">
+          <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
+          <p style="float:left;"></p>
+          <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         prev         </a>
+          &nbsp; | &nbsp;
+          <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
+          &nbsp; | &nbsp;
+          <a id="next" href="#" style="color:#87a;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
+          &nbsp; | &nbsp;
+          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
+          let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
+          ">         help         </a>
+          <br> <br>
+          <p id="problem-description"></p>
             
-            <div style="border:1px solid #999;width:100%; clear: both;
-            min-height:50vh;max-height:50vh;"            id="editor"            ></div>
-        </div>
+          <p style="float:left;width:40vw;" id="problem-examples"></p> 
 
+          <button type="button" class="btn" 
+          style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; float:right; 
+          border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
+          onclick="runTests(); return false;">         GO         </button>
 
-        <div name="right-div" style="float: right; width:42vw; padding: 2%; padding-top: 12vh;">
-          <div             id="output-table"              style="width:100%;"></div>
-
-          <div style="color:#0a0;" id="all-pass-message"></div>
-          <div id="hint"></div>
-        </div>    
-
+          
+          <div style="border:1px solid #999;width:100%; clear: both;
+          min-height:50vh;max-height:50vh;"            id="editor"            ></div>
       </div>
+
+
+      <div name="right-div" style="float: right; width:42vw; padding: 2%; padding-top: 12vh;">
+        <div             id="output-table"              style="width:100%;"></div>
+
+        <div style="color:#0a0;" id="all-pass-message"></div>
+        <div id="hint"></div>
+      </div> 
+    </div>
       
 
         
-        <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
-        </canvas>
-      <script src="safeEval.js"></script>
-      <script>
-        var currentProblemId
-        const D = x => document.getElementById(x),
-              E = x => document.createElement(x)
-        const output = D('output-table')
+      <canvas id="ctx" style="position:absolute;left:0;top:0;z-index:-9;background-color: rgba(255, 255, 255, 1);width:100%;height:100%;">
+      </canvas>
+    <script src="safeEval.js"></script>
+    <script>
+      var currentProblemId
+      const D = x => document.getElementById(x),
+            E = x => document.createElement(x)
+      const output = D('output-table')
+      const User = {
+        loggedIn: false,
+        completions:[],
+        submissions:[]
+      }
 
-        Create_All_Buttons_Once_When_The_Page_Loads: {
-          let color = [248,253,253], row = E('div')
-          for (let i in PROBLEM_DATA) {
-            const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
-            btn.type = 'button'
-            btn.classList.add('btn')
-            btn.style.margin = '5px'
-            btn.style.width = '80px'
-            btn.style.height = '80px'
-            btn.style.font = '20px Arial'
-            btn.style.background = rgba
-            btn.style.transition = 'all 0.5s ease'
-            btn.onmouseover=_=>btn.style.backgroundColor='#aae'
-            btn.onmouseout=_=>btn.style.backgroundColor=rgba
-            btn.id = +i
-            btn.onclick = _ => showQuestion(btn.id)
-            btn.innerHTML = (+i+1)
-            row.appendChild(btn)
-            if (i % 10 === 9) {            
-              row.style.backgroundColor = `rgb(${color.join`,`})`
-              color.forEach((_,i) => color[i] -= 13)
-              D('main-page').appendChild(row)
-              row = E('div')
-            }
+      Create_All_Buttons_Once_When_The_Page_Loads: {
+        let color = [248,253,253], row = E('div')
+        for (let i in PROBLEM_DATA) {
+          const btn = E('button'), rgba = `rgba(21${i%4===0?0:2},21${i%4===1?0:2},21${i%4===2?0:2},0.6`
+          btn.type = 'button'
+          btn.classList.add('btn')
+          btn.style.margin = '5px'
+          btn.style.width = '80px'
+          btn.style.height = '80px'
+          btn.style.font = '20px Arial'
+          btn.style.background = rgba
+          btn.style.transition = 'all 0.5s ease'
+          btn.onmouseover=_=>btn.style.backgroundColor='#aae'
+          btn.onmouseout=_=>btn.style.backgroundColor=rgba
+          btn.id = +i
+          btn.onclick = _ => showQuestion(btn.id)
+          btn.innerHTML = (+i+1)
+          row.appendChild(btn)
+          if (i % 10 === 9) {            
+            row.style.backgroundColor = `rgb(${color.join`,`})`
+            color.forEach((_,i) => color[i] -= 13)
+            D('main-page').appendChild(row)
+            row = E('div')
           }
         }
-
-
-        var editor = window.ace.edit(D("editor"));
-        editor.renderer.setShowGutter(false);
-        const options = {
-          enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
-          enableLiveAutocompletion: true, // the editor completes the statement while you are typing
-          showPrintMargin: false, // hides the vertical limiting strip
-          fontSize: "100%",
-          maxLines: 1000,
-          autoScrollEditorIntoView: true,
-        }
-      function goHome() { hideAllPagesExcept(D('main-page')) }
-      function aboutPage() { hideAllPagesExcept(D('about-page')) }
-      function logInPage() { hideAllPagesExcept(D('log-in-page')) }
-      function signUpPage() { hideAllPagesExcept(D('sign-up-page')) }
-
-      function clearOutputLog() {
-        D('all-pass-message').innerHTML = D('hint').innerHTML = output.innerHTML = ''
-        while (output.children[0]) output.removeChild(output.children[0])
-        editor.focus()
-      }
-      function hideAllPagesExcept(x) {
-        D('sign-up-page').style.display='none'
-        D('problem-page').style.display='none'
-        D('log-in-page').style.display='none'
-        D('about-page').style.display='none'
-        D('main-page').style.display='none'
-        if (x) x.style.display='block'
       }
 
-      function showQuestion(n) {
-        currentProblemId = +n
-        const a = currentProblemId === 0, b = currentProblemId === PROBLEM_DATA.length-1 
 
-        with (D('previous')) {
-          style.pointerEvents = a ? 'none' : 'auto'  
-          style.color =         a ? '#999' : '#87a'
-          style.cursor =        a ? 'default' : 'pointer'
-        }
-        with (D('next')) {
-          style.pointerEvents = b ? 'none' : 'auto'  
-          style.color =         b ? '#999' : '#87a'
-          style.cursor =        b ? 'default' : 'pointer'
-        }
+      var editor = window.ace.edit(D("editor"));
+      editor.renderer.setShowGutter(false);
+      const options = {
+        enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
+        enableLiveAutocompletion: true, // the editor completes the statement while you are typing
+        showPrintMargin: false, // hides the vertical limiting strip
+        fontSize: "100%",
+        maxLines: 1000,
+        autoScrollEditorIntoView: true,
+      }
+    function goHome() { hideAllPagesExcept(D('main-page')) }
+    function aboutPage() { hideAllPagesExcept(D('about-page')) }
+    function logInPage() { 
+      D('login-pw').value = ''
+      D('login-uname').value = ''
+      D('login-msg').innerHTML = ''
+      hideAllPagesExcept(D('log-in-page')) 
+    }
+    function signUpPage() { 
+      D('create-pw').value = ''
+      D('create-pw2').value = ''
+      D('create-uname').value = ''
+      D('create-account-msg').innerHTML = ''
+      hideAllPagesExcept(D('sign-up-page')) 
+    }
 
-        clearOutputLog()
-        D('about-page').style.display='none'
-        D('problem-page').style.display='block'
-        D('main-page').style.display='none'
+    function clearOutputLog() {
+      D('all-pass-message').innerHTML = D('hint').innerHTML = output.innerHTML = ''
+      while (output.children[0]) output.removeChild(output.children[0])
+      editor.focus()
+    }
+    function hideAllPagesExcept(x) {
+      D('sign-up-page').style.display='none'
+      D('problem-page').style.display='none'
+      D('log-in-page').style.display='none'
+      D('about-page').style.display='none'
+      D('main-page').style.display='none'
+      if (x) x.style.display='block'
+    }
 
-        D('problem-name').innerHTML = PROBLEM_DATA[n].name
-        D('problem-description').innerHTML = PROBLEM_DATA[n].description
-        D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
-        editor.setValue(PROBLEM_DATA[n].submission)
-        editor.setOptions(options);
-        editor.setTheme("ace/theme/chrome");
-        editor.getSession().setMode("ace/mode/javascript");
-        var row = editor.session.getLength() - 2
-        editor.selection.moveTo(row)
-        editor.navigateLineEnd()
+    function showQuestion(n) {
+      currentProblemId = +n
+      const a = currentProblemId === 0, b = currentProblemId === PROBLEM_DATA.length-1 
+
+      with (D('previous')) {
+        style.pointerEvents = a ? 'none' : 'auto'  
+        style.color =         a ? '#999' : '#87a'
+        style.cursor =        a ? 'default' : 'pointer'
+      }
+      with (D('next')) {
+        style.pointerEvents = b ? 'none' : 'auto'  
+        style.color =         b ? '#999' : '#87a'
+        style.cursor =        b ? 'default' : 'pointer'
       }
 
-      function resetQuestion(n) {
-        if (confirm('Are you sure you erase all your work?'))
-          editor.setValue(PROBLEM_DATA[n].solutionSetup)
-      }
+      clearOutputLog()
+      D('about-page').style.display='none'
+      D('problem-page').style.display='block'
+      D('main-page').style.display='none'
 
-      function runTests() {
-        'use strict'   
-        clearOutputLog()
-        
-        if (!arguments[0]) {
-          output.innerHTML = 'running tests...'
-          setTimeout(_ => runTests(true) , Math.random()*200 + 300 | 0)
-          return
-        }
+      D('problem-name').innerHTML = PROBLEM_DATA[n].name
+      D('problem-description').innerHTML = PROBLEM_DATA[n].description
+      D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
+      editor.setValue(User.submissions[n] || PROBLEM_DATA[n].submission)
+      editor.setOptions(options);
+      editor.setTheme("ace/theme/chrome");
+      editor.getSession().setMode("ace/mode/javascript");
+      var row = editor.session.getLength() - 2
+      editor.selection.moveTo(row)
+      editor.navigateLineEnd()
+    }
 
-        let passedAll = true    
-        const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
-        const printOutput = [], super_log = console.log
-        var submission
-        try { 
-          const src = editor.getValue()
-          console.log = (...xs) => printOutput.push(xs.join` `); 
-          eval('try{' + src +'\n; submission =' + name + '} catch(e) { submission = e.toString() } ') 
-        } 
-        catch(e) { output.innerHTML = e.toString() }
-        if (typeof submission !== 'function') {
-          output.innerHTML = submission || `syntax error or ${name} needs to be a function.`
-          console.log = super_log
-          return; 
-        }
-        
-        const table = E('table')
-        addHeaders: { 
-          const row = E('tr'); 
-          ['Expected', 'Actual',''].forEach(r => {
-            const R = E('th')
-            R.innerHTML = r
-            row.append(R)
+    function resetQuestion(n) {
+      if (confirm('Are you sure you erase all your work?'))
+        editor.setValue(PROBLEM_DATA[n].solutionSetup)
+    }
+
+    
+
+
+
+
+
+
+
+
+
+      const config = {
+        apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
+        authDomain: "codingpro-5c5d9.firebaseapp.com",
+        databaseURL: "https://codingpro-5c5d9.firebaseio.com",
+        projectId: "codingpro-5c5d9",
+        storageBucket: "codingpro-5c5d9.appspot.com",
+        messagingSenderId: "350756630303",
+        appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
+      };
+
+      firebase.initializeApp(config);
+
+      // Initialize Cloud Firestore through Firebase
+      const db = firebase.firestore();
+
+      function createAccount(email,password,pw2) {
+        const message = msg => 
+          D('create-account-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
+        if (password !== pw2) 
+          return message('The passwords don\'t match. Please try Again.')
+        let success = true
+        db.collection('users').get().then(snapshot => {
+          if (snapshot.docs.some(doc => 
+          doc.data().email.toLowerCase() === email.toLowerCase())) 
+            success = false
+          
+        }).then(_ => {
+          if (!success) { message('This email is already in use.'); return; }
+
+          db.collection("users").add({
+              email: email.toLowerCase(),
+              password: password,
+              completions:[],
+              submissions:{}
           })
-          table.append(row) 
-        }
-
-        table.style.float = 'left'
-        table.style.width = '100%'
-        table.style.height = '20px'
-        table.style.margin = '1px'
-        for (let args of testinputs) {
-          try {
-            var actual = submission(...args)
-          } catch (e) {
-            actual = e.toString()
-          }
-          const expected = solution(...args)
-          const pass = actual === expected
-          passedAll = passedAll && pass
-          const convert = x => ({"string":'"'+x+'"'})[typeof x] || x
-          const row = E('tr')
-          const [A,B,C] = [E('td'),E('td'),E('td')]
-          A.innerHTML = `${name}(${args.map(convert).join` `}) → ${convert(expected)}`
-          B.innerHTML = '' + convert(actual)
-          C.style.color = pass ? '#505' : '#fff'
-          C.innerHTML = pass ? 'passed!' : 'failed!'
-          C.style.backgroundColor = pass ? '#0f0' : '#f00';
-          [A,B,C].forEach(x => {
-            x.style.border = '1px solid #bbb'
-            row.append(x)
-          })
-          table.append(row) 
-        }
-        const tableContainer = E('div')
-        tableContainer.style.overflowY = 'scroll'
-        tableContainer.style.overflowX = 'hidden'
-        tableContainer.style.maxHeight = '40vh'
-        tableContainer.style.backgroundColor ='#ddd'
-        tableContainer.style.borderLeft = tableContainer.style.borderTop = '1px solid #aaa'
-        tableContainer.style.borderRight = tableContainer.style.borderBottom = '1px solid #ccc'
-        tableContainer.append(table)
-        output.append(tableContainer)
-
-        D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
-
-        
-        const logOutput = E('div')
-        { const style = logOutput.style
-          style.clear = 'both'
-          style.width = '100%'
-          style.marginTop = '2%'
-          style.overflowY = 'scroll'
-          style.maxHeight = '30vh'
-          style.borderLeft = style.borderTop = '2px solid #aaa'
-          style.borderRight = style.borderBottom = '2px solid #ccc'
-        }
-        logOutput.innerHTML = printOutput.map(x=>' &nbsp; '+x).join`<br>`
-        if (printOutput.length) output.append(logOutput)
-        
-        console.log = super_log
+          console.log("Account created.");
+        })
       }
-
-
-
-
-
-
-
-
-
-        const config = {
-          apiKey: "AIzaSyAEu7t6BcYyJA1NqhMhYwSLVGbcUE4oivM",
-          authDomain: "codingpro-5c5d9.firebaseapp.com",
-          databaseURL: "https://codingpro-5c5d9.firebaseio.com",
-          projectId: "codingpro-5c5d9",
-          storageBucket: "codingpro-5c5d9.appspot.com",
-          messagingSenderId: "350756630303",
-          appId: "1:350756630303:web:1cf33ac22e3cd377534a2a"
-        };
-
-        firebase.initializeApp(config);
-
-        // Initialize Cloud Firestore through Firebase
-        const db = firebase.firestore();
-
-        function createAccount(email,password,pw2) {
-          if (password !== pw2) return console.log('The passwords don\'t match')
-          let success = [true]
-          db.collection('users').get().then(snapshot => {
-            if (snapshot.docs.some(doc => 
-            doc.data().email.toLowerCase() === email.toLowerCase())) {
-              console.log('happens')
-              success[0] = false
-            }
-          }).then(_ => {
-            console.log('success =',success)
-            if (!success[0]) { console.log('This email is already in use.'); return; }
-
-            db.collection("users").add({
-                email: email.toLowerCase(),
-                password: password,
-                completions:[],
-                submissions:[]
-            })
-            console.log("Account created.");
-          })
-        }
-        function logIn(email,password) {
-          db.collection('users').get().then(snapshot => {
-              snapshot.docs.forEach(doc => {
-                if (doc.data().email.toLowerCase() === email && 
-                    doc.data().password === password) {
-                  console.log('successfully logged in')
-                  return;
-                }
+      function logIn(email,password) {
+        
+        const message = msg => 
+          D('login-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
+        
+        let success = false
+        db.collection('users').get().then(snapshot => {
+            success = success ||
+              snapshot.docs.some(doc => {
+                const d = doc.data();
+                if (d.email === email.toLowerCase() && 
+                    d.password === password) {
+                      User.email = d.email
+                      User.password = password
+                      User.loggedIn = true
+                      User.completions = 
+                        Array.from(new Set([...User.completions,d.completions]))
+                      for (const i in d.submissions) {
+                        if (!(i in User.submissions))
+                          User.submissions[i] = d.submissions[i]
+                      }
+                      console.log('success!')
+                      return 1
+                    }
               })
-              console.log('invalid username or password')
-          })
+        })
+        if (!success) return message('invalid username or password') 
+      }
+
+    function runTests() {
+      'use strict'   
+      clearOutputLog()
+
+      if (User.loggedIn) {
+        const ref = firebase.database().ref('users/god/email')
+        console.log('ref =',ref)
+        // db.collection('users').get().then(snapshot => {
+        //   if (snapshot.docs.some(doc => 
+        //   doc.data().email.toLowerCase() === email.toLowerCase())) 
+        //     success = false
+        // })
+      }
+      
+      if (!arguments[0]) {
+        output.innerHTML = 'running tests...'
+        setTimeout(_ => runTests(true) , Math.random()*200 + 300 | 0)
+        return
+      }
+
+      let passedAll = true    
+      const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
+      const printOutput = [], super_log = console.log
+      var submission
+      try { 
+        const src = editor.getValue()
+        User.submissions[currentProblemId] = src
+        // if (User.loggedIn)
+        console.log = (...xs) => printOutput.push(xs.join` `); 
+        eval('try{' + src +'\n; submission =' + name + '} catch(e) { submission = e.toString() } ') 
+      } 
+      catch(e) { output.innerHTML = e.toString() }
+      if (typeof submission !== 'function') {
+        output.innerHTML = submission || `syntax error or ${name} needs to be a function.`
+        console.log = super_log
+        return; 
+      }
+      
+      const table = E('table')
+      addHeaders: { 
+        const row = E('tr'); 
+        ['Expected', 'Actual',''].forEach(r => {
+          const R = E('th')
+          R.innerHTML = r
+          row.append(R)
+        })
+        table.append(row) 
+      }
+
+      table.style.float = 'left'
+      table.style.width = '100%'
+      table.style.height = '20px'
+      table.style.margin = '1px'
+      for (let args of testinputs) {
+        try {
+          var actual = submission(...args)
+        } catch (e) {
+          actual = e.toString()
         }
+        const expected = solution(...args)
+        const pass = actual === expected
+        passedAll = passedAll && pass
+        const convert = x => ({"string":'"'+x+'"'})[typeof x] || x
+        const row = E('tr')
+        const [A,B,C] = [E('td'),E('td'),E('td')]
+        A.innerHTML = `${name}(${args.map(convert).join` `}) → ${convert(expected)}`
+        B.innerHTML = '' + convert(actual)
+        C.style.color = pass ? '#505' : '#fff'
+        C.innerHTML = pass ? 'passed!' : 'failed!'
+        C.style.backgroundColor = pass ? '#0f0' : '#f00';
+        [A,B,C].forEach(x => {
+          x.style.border = '1px solid #bbb'
+          row.append(x)
+        })
+        table.append(row) 
+      }
+      const tableContainer = E('div')
+      tableContainer.style.overflowY = 'scroll'
+      tableContainer.style.overflowX = 'hidden'
+      tableContainer.style.maxHeight = '40vh'
+      tableContainer.style.backgroundColor ='#ddd'
+      tableContainer.style.borderLeft = tableContainer.style.borderTop = '1px solid #aaa'
+      tableContainer.style.borderRight = tableContainer.style.borderBottom = '1px solid #ccc'
+      tableContainer.append(table)
+      output.append(tableContainer)
 
-        // function User(login,password) {
-        //   this.login = login
-        //   this.password = password
-        //   this.completions = []
-        //   this.submissions = []
-        // }
+      D('all-pass-message').innerHTML = passedAll ? "You've passed all the tests!" : ''
 
-        // function signUp(email,password) {
-        //   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     console.log(errorMessage)
-        //   });
-        // }
-        // // signUp('ronaldmcorona@gmail.com','easypass123')
+      
+      const logOutput = E('div')
+      { const style = logOutput.style
+        style.clear = 'both'
+        style.width = '100%'
+        style.marginTop = '2%'
+        style.overflowY = 'scroll'
+        style.maxHeight = '30vh'
+        style.borderLeft = style.borderTop = '2px solid #aaa'
+        style.borderRight = style.borderBottom = '2px solid #ccc'
+      }
+      logOutput.innerHTML = printOutput.map(x=>' &nbsp; '+x).join`<br>`
+      if (printOutput.length) output.append(logOutput)
+      
+      console.log = super_log
+    }
 
-        // function signIn(email,password) {
-        //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     console.log(errorMessage)
-        //   });
-        // }
+      // function User(login,password) {
+      //   this.login = login
+      //   this.password = password
+      //   this.completions = []
+      //   this.submissions = []
+      // }
+
+      // function signUp(email,password) {
+      //   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      //     var errorCode = error.code;
+      //     var errorMessage = error.message;
+      //     console.log(errorMessage)
+      //   });
+      // }
+      // // signUp('ronaldmcorona@gmail.com','easypass123')
+
+      // function signIn(email,password) {
+      //   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      //     var errorCode = error.code;
+      //     var errorMessage = error.message;
+      //     console.log(errorMessage)
+      //   });
+      // }
 
 
-      </script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
   </body>
