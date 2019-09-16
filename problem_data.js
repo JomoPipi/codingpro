@@ -13,8 +13,8 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
 const PROBLEM_DATA = [
     [
       'myFirstFunction',
-      "Just return the input.<br> If you don't know how to do that, then you should research it. Coders should be good at research.",
-      'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → 27 <br>',
+      "Just return the input.<br> If you don't know how to do that, then you should <a style=\"color:#505;\" href=\"https://www.google.com/search?q=javascript+how+to+return+a+value&oq=javascript+how+to+return+a+value\" target=\"_blank\">research it</a>. Coders should be good at research.",
+      'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → -27 <br>',
       'function myFirstFunction(input) {\n  \n}',
       x => x,
       [[0],[1],[-2],[235],['256'],[true],['hello']],

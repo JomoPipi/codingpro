@@ -12,11 +12,12 @@
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
-    const [login,signup] = ['login','sign-up'].map(x => D(x + '-page-button').style)
+    const [login,signup] = ['login','signup'].map(x => D(x + '-page-button').style)
     login.display = signup.display = user ? 'none' : 'block'
-    D('logout').style.display = user ? 'block' : 'none'
+    D('logout-form').style.display = user ? 'block' : 'none'
 
     if (user) { 
+        D('email-display').innerHTML = user.email
         User.loggedIn = true
         User.save = _ => 
           User.loggedIn && db.collection('users').doc(user.uid).set({
@@ -24,17 +25,16 @@ auth.onAuthStateChanged(user => {
             submissions: User.submissions
           })
 
-        db.collection('users').doc(user.uid).get().then(doc => {
-            const d = doc.data()
-            for (const k in d.submissions)
+        db.collection('users').doc(user.uid).get().then(async doc => {
+            const d = await doc.data()
+            if (d.submissions) for (const k in d.submissions)
                 if (!User.submissions[k])
                     User.submissions[k] = d.submissions[k]
-            for (const k in d.completions)
+            if (d.completions) for (const k in d.completions)
                 if (d.completions[k])
                     User.completions[k] = true
         }).then(_ => {
             goHome()
-            console.log('equals true',User.completions[0])
             colorAllButtons()
             User.save()
         })
@@ -51,13 +51,13 @@ auth.onAuthStateChanged(user => {
 
 
 // create account
-D('sign-up-form').onsubmit = function(e) {
+D('signup-form').onsubmit = function(e) {
     e.preventDefault()
 
     const message = msg => 
-        D('sign-up-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
+        D('signup-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
 
-    const [email,pw,pw2] = ['email','pw','pw2'].map(x => this['sign-up-'+x].value)
+    const [email,pw,pw2] = ['email','pw','pw2'].map(x => this['signup-'+x].value)
 
     if (pw !== pw2) return message('The passwords don\'t match. Please try again.')
     console.log('email,pw =',email,pw)
@@ -83,6 +83,7 @@ D('logout').onclick = function(e) {
     User.loggedIn = false
     User.reset()
     colorAllButtons()
+    goHome()
     auth.signOut()
 }
 

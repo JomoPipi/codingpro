@@ -47,11 +47,15 @@
                 </form>
                 <form class="form-inline my-2 my-lg-0">
                   <div class="btn myBtns" style="color:#333;border-top-right-radius:9px;" 
-                    onclick="signUpPage()" id="sign-up-page-button">                    Create Account                    </div>
+                    onclick="signUpPage()" id="signup-page-button">                    Create Account                    </div>
                 </form>
-                <form class="form-inline my-2 my-lg-0">
-                  <div class="btn myBtns" style="color:#333;border-top-right-radius:9px;" 
-                     id="logout">                    Log Out                    </div>
+                <form class="form-inline my-2 my-lg-0" id="logout-form">
+
+                  <div class="btn myBtns" style="color:#333;border-top-right-radius:9px;float:right;" 
+                  id="logout">                    Log Out                    </div>
+
+                  <div id="email-display" class="btn" style="float:right;" ></div>
+
                 </form>
             </form>
         </div>
@@ -65,7 +69,7 @@
 
 
     <center>
-      <div style="width:100%;" id="main-page">
+      <div style="width:100%;" id="home-page">
         <h1 style="color:#87a;" class="display-4"> 
           <br>                    Learn JavaScript in 200 problems                    </h1>
         <br>
@@ -121,17 +125,17 @@
 
 
     <center>
-      <div style="display:none; width:100%" id="sign-up-page">
+      <div style="display:none; width:100%" id="signup-page">
         <h1 style="color:#87a;" class="display-4"> <br>                    Create Account                    </h1>
         <br>
         <div>
           <table>
             <tbody>
-                <div id="sign-up-msg"></div>
-                <form id="sign-up-form">
-                <tr><td>id/email</td><td>  <input type="text" id="sign-up-email" size="20"></td></tr>
-                <tr><td>password</td><td>  <input type="password" id="sign-up-pw" size="20"></td></tr>
-                <tr><td>confirm </td><td>  <input type="password" id="sign-up-pw2" size="20"></td></tr>
+                <div id="signup-msg"></div>
+                <form id="signup-form">
+                <tr><td>id/email</td><td>  <input type="text" id="signup-email" size="20"></td></tr>
+                <tr><td>password</td><td>  <input type="password" id="signup-pw" size="20"></td></tr>
+                <tr><td>confirm </td><td>  <input type="password" id="signup-pw2" size="20"></td></tr>
                 <tr><td></td><td>  <input type="submit" value="go"></td></tr>
                 </form>
             </tbody>
@@ -148,7 +152,7 @@
 
 
     <center>
-      <div style="display:none; width:100%" id="log-in-page">
+      <div style="display:none; width:100%" id="login-page">
         <h1 style="color:#87a;" class="display-4"> <br>                    Log In                    </h1>
         <br>
         <div>
@@ -185,7 +189,7 @@
           &nbsp; | &nbsp;
           <a id="next" href="#" style="color:#87a;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
           &nbsp; | &nbsp;
-          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.5);" onclick="
+          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.7);" onclick="
           let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
           ">         help         </a>
           <br> <br>
@@ -296,7 +300,7 @@
           if (i % 10 === 9) {            
             row.style.backgroundColor = `rgb(${color.join`,`})`
             color.forEach((_,i) => color[i] -= 13)
-            D('main-page').appendChild(row)
+            D('home-page').appendChild(row)
             row = E('div')
           }
         }
@@ -307,7 +311,7 @@
         `rgba(9${i%4===0?0:3},24${i%4===1?0:3},9${i%4===2?0:3},0.8` :
         `rgba(21${i%4===0?0:9},21${i%4===1?0:9},21${i%4===2?0:9},0.6`
         btn.style.backgroundColor=rgba
-        btn.style.transition = 'all 0.5s ease'
+        btn.style.transition = 'all 0.6s ease'
         btn.onmouseover=_=>btn.style.backgroundColor='#aae'
         btn.onmouseout=_=>btn.style.backgroundColor=rgba
       }
@@ -338,17 +342,23 @@
 
 
     </script>
-
-
-
-
-
-
-
     <script src="scripts/auth.js"></script>
     <script>
 
-      function goHome() { hideAllPagesExcept(D('main-page')) }
+      const pages = [
+        HOME,ABOUT,LOGIN,SIGNUP,PROBLEM
+      ] = 'home,about,login,signup,problem'.split`,`.map(s => D(s + '-page'))
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      function goHome() { gotoPage(HOME) }
 
 
 
@@ -357,7 +367,7 @@
 
 
 
-      function aboutPage() { hideAllPagesExcept(D('about-page')) }
+      function aboutPage() { gotoPage(ABOUT) }
 
 
 
@@ -370,7 +380,7 @@
         D('login-pw').value = ''
         D('login-email').value = ''
         D('login-msg').innerHTML = ''
-        hideAllPagesExcept(D('log-in-page')) 
+        gotoPage(LOGIN) 
       }
 
 
@@ -381,11 +391,11 @@
 
 
       function signUpPage() { 
-        D('sign-up-pw').value = ''
-        D('sign-up-pw2').value = ''
-        D('sign-up-email').value = ''
-        D('sign-up-msg').innerHTML = ''
-        hideAllPagesExcept(D('sign-up-page')) 
+        D('signup-pw').value = ''
+        D('signup-pw2').value = ''
+        D('signup-email').value = ''
+        D('signup-msg').innerHTML = ''
+        gotoPage(SIGNUP) 
       }
 
 
@@ -406,16 +416,33 @@
 
 
 
+      // const setUrl = url => {
+      //   history.pushState({url}, url, '?q='+url)
+      // }
+      // window.onpopstate = e => {
+      //   e.preventDefault()
+      //   console.log('this happening')
+      //   if (!e.state) { console.log('here'); return gotoPage(HOME) }
+      //   const x = e.state.url
+      //   console.log('x =',x)
+      //   isNaN(+x) ? gotoPage(D(x)) : showQuestion(x)
+      //   return true
+      // }
 
+      // window.onload = e => {
+      //   e.preventDefault()
+      //   const x = location.search.slice(3)
+      //   console.log('that happening',isNaN(+x))
+      //   isNaN(+x) ? gotoPage(D(x)) : showQuestion(x)
+      //   return true
+      // }
 
-      function hideAllPagesExcept(x) {
-        D('sign-up-page').style.display='none'
-        D('problem-page').style.display='none'
-        D('log-in-page').style.display='none'
-        D('about-page').style.display='none'
-        D('main-page').style.display='none'
-        if (x) x.style.display='block'
+      function gotoPage(p, dontSetUrl) {
+        pages.forEach(p => p.style.display='none')
+        // if (!dontSetUrl) setUrl(p.id)
+        if (p) p.style.display='block'
       }
+      
 
 
 
@@ -425,7 +452,7 @@
 
 
       function showQuestion(n) {
-        
+        // setUrl(n)
         currentProblemId = +n
         const a = currentProblemId === 0, b = currentProblemId === PROBLEM_DATA.length-1 
         with (D('previous')) {
@@ -439,12 +466,10 @@
           style.cursor =        b ? 'default' : 'pointer'
         }
         clearOutputLog()
-        D('about-page').style.display='none'
-        D('problem-page').style.display='block'
-        D('main-page').style.display='none'
-        D('problem-name').innerHTML = PROBLEM_DATA[n].name
+        gotoPage(PROBLEM)
+        D('problem-name').innerHTML =        PROBLEM_DATA[n].name
+        D('problem-examples').innerHTML =    PROBLEM_DATA[n].examples
         D('problem-description').innerHTML = PROBLEM_DATA[n].description
-        D('problem-examples').innerHTML = PROBLEM_DATA[n].examples
         editor.setValue(User.submissions[n] || PROBLEM_DATA[n].submission)
         var row = editor.session.getLength() - 2
         editor.selection.moveTo(row)
@@ -469,7 +494,7 @@
 
 
       function runTests() {
-        'use strict'   
+        // 'use strict'   nah 
         clearOutputLog()
         
         if (!arguments[0]) {
@@ -548,14 +573,14 @@
 
         if (passedAll) {
           User.completions[currentProblemId] = true
-          D('all-pass-message').innerHTML = "You've passed all the tests!"
-          User.save()
+          D('all-pass-message').innerHTML = "You've passed all the tests! <a onclick=\"showQuestion(currentProblemId+1)\" style=\"color:#505;cursor:pointer;\"> NEXT </a>"
         } 
         else { 
           D('all-pass-message').innerHTML = ''
           delete User.completions[currentProblemId]
         }
         colorButton(currentProblemId)
+        User.save()
 
         const logOutput = E('div')
         { const style = logOutput.style
