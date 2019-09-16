@@ -13,7 +13,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
-      <title>         CodingPro         </title>
+      <title>                    CodingPro                    </title>
       <script src="problem_data.js"></script>
       <script src="ace.js"></script>
   </head>
@@ -27,7 +27,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;padding-left:2vw;padding-right:2vw;">
-        <a class="navbar-brand" href="#"  onclick="goHome()" >         CodingPro         </a>
+        <a class="navbar-brand" href="#"  onclick="goHome()">                    CodingPro                    </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,22 +36,22 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#" onclick="aboutPage()">         About         </a>
+                <a class="nav-link" href="#" onclick="aboutPage()">                    About                    </a>
               </li>
             </ul>
             <style> .myBtns:hover{ cursor: pointer; font-weight: 500; } </style>
             <form class="form-inline my-2 my-lg-0">
                 <form class="form-inline my-2 my-lg-0">
                   <div class="btn myBtns" style="color:#333;" class="log-in-sign-in"
-                  onclick="logInPage()" id="login-page-button">         Log In         </div>
+                  onclick="logInPage()" id="login-page-button">                    Log In                    </div>
                 </form>
                 <form class="form-inline my-2 my-lg-0">
                   <div class="btn myBtns" style="color:#333;border-top-right-radius:9px;" 
-                    onclick="signUpPage()" id="sign-up-page-button">         Create Account         </div>
+                    onclick="signUpPage()" id="sign-up-page-button">                    Create Account                    </div>
                 </form>
                 <form class="form-inline my-2 my-lg-0">
                   <div class="btn myBtns" style="color:#333;border-top-right-radius:9px;" 
-                     id="logout">         Log Out         </div>
+                     id="logout">                    Log Out                    </div>
                 </form>
             </form>
         </div>
@@ -66,7 +66,8 @@
 
     <center>
       <div style="width:100%;" id="main-page">
-        <h1 style="color:#87a;" class="display-4"> <br>         Learn JavaScript in 200 problems         </h1>
+        <h1 style="color:#87a;" class="display-4"> 
+          <br>                    Learn JavaScript in 200 problems                    </h1>
         <br>
       </div>
     </center>
@@ -80,7 +81,7 @@
 
     <div id="about-page" style="display:none;margin: 2%;">
       <div class="jumbotron">
-        <h1 class="display-3" style="color:#87a;">         About         </h1>
+        <h1 class="display-3" style="color:#87a;">                    About                    </h1>
         <p class="lead">
           This website attempts to teach coding to first-time beginners who <br>
           may have never written a line of code. If you enjoy challenges, <br>
@@ -93,7 +94,7 @@
       </div>
         <a data-toggle="dropdown" 
         href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
-        aria-expanded="true">         More learning resources         </a>
+        aria-expanded="true">                    More learning resources                    </a>
         <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
           <a class="dropdown-header"> - other free coding websites - </a>
           <a class="dropdown-item" href="https://codingbat.com/prob/p187868" target="_blank"> Codingbat </a>
@@ -121,7 +122,7 @@
 
     <center>
       <div style="display:none; width:100%" id="sign-up-page">
-        <h1 style="color:#87a;" class="display-4"> <br>         Create Account         </h1>
+        <h1 style="color:#87a;" class="display-4"> <br>                    Create Account                    </h1>
         <br>
         <div>
           <table>
@@ -148,7 +149,7 @@
 
     <center>
       <div style="display:none; width:100%" id="log-in-page">
-        <h1 style="color:#87a;" class="display-4"> <br>         Log In         </h1>
+        <h1 style="color:#87a;" class="display-4"> <br>                    Log In                    </h1>
         <br>
         <div>
           <table>
@@ -287,9 +288,6 @@
           btn.style.width = '80px'
           btn.style.height = '80px'
           btn.style.font = '20px Arial'
-          // btn.style.transition = 'all 0.5s ease'
-          // btn.onmouseover=_=>btn.style.backgroundColor='#aae'
-          // btn.onmouseout=_=>btn.style.backgroundColor=rgba
           btn.id = i
           colorButton(i,btn)
           btn.onclick = _ => showQuestion(btn.id)
@@ -305,12 +303,13 @@
       }
       function colorButton(i, b) {
         const btn = b || D(''+i)
-        if (User.completions[i])
-          btn.style.background =
-          `rgba(9${i%4===0?0:3},25${i%4===1?0:3},9${i%4===2?0:3},0.8`
-        else
-          btn.style.background =
-          `rgba(21${i%4===0?0:3},21${i%4===1?0:2},21${i%4===2?0:3},0.6`
+        const rgba = User.completions[i] ?
+        `rgba(9${i%4===0?0:3},24${i%4===1?0:3},9${i%4===2?0:3},0.8` :
+        `rgba(21${i%4===0?0:9},21${i%4===1?0:9},21${i%4===2?0:9},0.6`
+        btn.style.backgroundColor=rgba
+        btn.style.transition = 'all 0.5s ease'
+        btn.onmouseover=_=>btn.style.backgroundColor='#aae'
+        btn.onmouseout=_=>btn.style.backgroundColor=rgba
       }
       function colorAllButtons() {
         for (let i=0; i < PROBLEM_DATA.length; i++) {
