@@ -28,8 +28,14 @@
         .myBtns:hover{ cursor: pointer; font-weight: 500; } 
         .myBtns2 {
           background: rgb(120,113,163);
+          color:#fff;
           background: linear-gradient(0deg, rgba(120,113,163,1) 0%, rgba(135,120,163,1) 100%);
         } 
+        .myBtns2:active {
+          border: 1px solid #0fa;
+          color:#0fa;
+          transition: 0.2s;
+        }
       </style>
       <script src="problem_data.js"></script>
       <script src="ace.js"></script>
@@ -156,7 +162,7 @@
                 <tr><td>id/email</td><td>  <input type="text" id="signup-email" size="20"></td></tr>
                 <tr><td>password</td><td>  <input type="password" id="signup-pw" size="20"></td></tr>
                 <tr><td>confirm </td><td>  <input type="password" id="signup-pw2" size="20"></td></tr>
-                <tr><td></td><td>  <input type="submit" class="btn myBtns2"style="color:#fff;" value="go"></td></tr>
+                <tr><td></td><td>  <input type="submit" class="btn myBtns2"value="go"></td></tr>
                 </form>
             </tbody>
           </table>
@@ -182,7 +188,7 @@
               <form id="login-form">
               <tr><td>id/email</td><td>  <input type="text" id="login-email" size="20"></td></tr>
               <tr><td>password</td><td>  <input type="password" id="login-pw" size="20"></td></tr>
-              <tr><td></td><td>  <input type="submit" class="btn myBtns2"style="color:#fff;" value="go"></td></tr>
+              <tr><td></td><td>  <input type="submit" class="btn myBtns2" value="go"></td></tr>
               </form>
             </tbody>
           </table>
@@ -217,9 +223,7 @@
             
           <p style="float:left;width:40vw;" id="problem-examples"></p> 
 
-          <button type="button" class="btn" 
-          style="color:#603;border-left:0.5px solid #999; border-top:0.5px solid #777; float:right; 
-          border-radius: 15px;border-bottom:1.7px solid #777; border-right:1.7px solid #999;" id="attempt"
+          <button type="button" class="btn myBtns2"style="float:right;" id="attempt"
           onclick="runTests(); return false;">         GO         </button>
 
           
