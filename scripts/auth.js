@@ -19,12 +19,13 @@ auth.onAuthStateChanged(user => {
     if (user) { 
         D('email-display').innerHTML = user.email
         User.loggedIn = true
-        User.save = _ => 
-          User.loggedIn && db.collection('users').doc(user.uid).set({
-            completions: User.completions,
-            submissions: User.submissions
-          })
-
+        User.save = function() {
+            User.store()
+            User.loggedIn && db.collection('users').doc(user.uid).set({
+                completions: User.completions,
+                submissions: User.submissions
+            })
+        }
         db.collection('users').doc(user.uid).get().then(async doc => {
             const d = await doc.data()
             if (d.submissions) for (const k in d.submissions)
@@ -38,8 +39,6 @@ auth.onAuthStateChanged(user => {
             colorAllButtons()
             User.save()
         })
-    } else {
-        User.reset()
     }
 })
 

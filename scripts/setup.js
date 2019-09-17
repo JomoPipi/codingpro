@@ -1,8 +1,33 @@
 function D (x) { return document.getElementById(x) }
 function E (x) { return document.createElement(x) }
 
+var currentProblemId, currentPage
+const User = {
+  loggedIn: false,
+  completions:{},
+  submissions:{},
+  store: _ => localStorage.setItem('User',JSON.stringify([User.completions,User.submissions])),
+  save: _ => User.store(),
+  reset: _ => (
+    localStorage.clear(),
+    User.completions = {}, 
+    User.submissions = {},
+    User.loggedIn = false,
+    User.save = _ => User.store()
+  )
+}
+
 window.onload = e => {
   e.preventDefault()
+  const s = localStorage.getItem('User')
+  if (s) {
+    try {
+      [User.completions,User.submissions] = JSON.parse(s)
+    } catch(e) { 
+      User.reset() // value was garbage and not JSON
+    }
+    colorAllButtons()
+  }
   const x = location.pathname.slice(1) || 'home'
   if (x === 'problem') 
     gotoQuestion(location.search.slice(1).split`&`.find(s => s.startsWith('number')).split`=`[1])
@@ -23,20 +48,7 @@ window.onpopstate = e => {
   return false
 }
 
-// Global constants/variables:
-var currentProblemId
-const User = {
-  loggedIn: false,
-  completions:{},
-  submissions:{},
-  save: _=>_,
-  reset: _ => (
-    User.completions = {}, 
-    User.submissions = {},
-    User.loggedIn = false,
-    User.save = _=>_
-  )
-}
+
 
 
 
@@ -118,6 +130,5 @@ const pages = [
     HOME,ABOUT,LOGIN,SIGNUP,PROBLEM
 ] = 'home,about,login,signup,problem'.split`,`.map(s => D(s + '-page'))
 
-var currentPage;
 
 PROBLEM.onkeydown = function(e) { e.ctrlKey && e.keyCode === 13 && runTests() }
