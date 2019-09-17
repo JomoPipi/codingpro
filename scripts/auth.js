@@ -34,7 +34,7 @@ auth.onAuthStateChanged(user => {
                 if (d.completions[k])
                     User.completions[k] = true
         }).then(_ => {
-            goHome()
+            if (currentPage === LOGIN || currentPage === SIGNUP) goHome()
             colorAllButtons()
             User.save()
         })

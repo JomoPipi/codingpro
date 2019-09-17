@@ -1,3 +1,13 @@
+<!-- CodingPro -->
+<!-- A place to learn JavaScript -->
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en"></html>
 
@@ -14,6 +24,13 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
       <title>                    CodingPro                    </title>
+      <style> 
+        .myBtns:hover{ cursor: pointer; font-weight: 500; } 
+        .myBtns2 {
+          background: rgb(120,113,163);
+          background: linear-gradient(0deg, rgba(120,113,163,1) 0%, rgba(135,120,163,1) 100%);
+        } 
+      </style>
       <script src="problem_data.js"></script>
       <script src="ace.js"></script>
   </head>
@@ -26,20 +43,20 @@
 
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;padding-left:2vw;padding-right:2vw;">
-        <a class="navbar-brand" href="#"  onclick="goHome()">                    CodingPro                    </a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:transparent;padding-left:2vw;padding-right:2vw;">
+        <a class="navbar-brand" style="cursor: pointer;" onclick="goHome()">                    CodingPro                    </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#" onclick="aboutPage()">                    About                    </a>
+                <a class="nav-link" style="cursor: pointer;" onclick="aboutPage()">                    About                    </a>
               </li>
             </ul>
-            <style> .myBtns:hover{ cursor: pointer; font-weight: 500; } </style>
             <form class="form-inline my-2 my-lg-0">
                 <form class="form-inline my-2 my-lg-0">
                   <div class="btn myBtns" style="color:#333;" class="log-in-sign-in"
@@ -69,7 +86,7 @@
 
 
     <center>
-      <div style="width:100%;" id="home-page">
+      <div style="width:100%;display: none;" id="home-page">
         <h1 style="color:#87a;" class="display-4"> 
           <br>                    Learn JavaScript in 200 problems                    </h1>
         <br>
@@ -88,17 +105,15 @@
         <h1 class="display-3" style="color:#87a;">                    About                    </h1>
         <p class="lead">
           This website attempts to teach coding to first-time beginners who <br>
-          may have never written a line of code. If you enjoy challenges, <br>
-            then this is for you.
+          may have never written a line of code. If you enjoy puzzles and <br>
+            challenges, then programming might be for you.
         </p>
         <hr class="my-4">
         <p style="font-size: 2em;">
         </p>
-        <!-- <img src="https://lh3.googleusercontent.com/-O-a_S7nPsvM/XXOFGj4JgKI/AAAAAAAABHs/JzEfd0-5dC4yAxu8zdK-HcMR5G7H_dfGgCEwYBhgL/w140-h140-p/_2.JPG"> -->
-      </div>
-        <a data-toggle="dropdown" 
-        href="#" role="button" aria-haspopup="true" style="background-color: transparent;"
-        aria-expanded="true">                    More learning resources                    </a>
+        <div class="myBtns" data-toggle="dropdown" role="button" aria-haspopup="true" 
+        style="background-color: transparent;margin-top: 30vh;"
+        aria-expanded="true">                    More learning resources                    </div>
         <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: 
           translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
           <a class="dropdown-header"> - other free coding websites - </a>
@@ -114,8 +129,9 @@
           <a class="dropdown-header"> - games - </a>
           <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">submit suggestion</a>
+          <a class="dropdown-item" >submit suggestion</a>
         </div>
+      </div>
     </div>
 
 
@@ -128,6 +144,9 @@
     <center>
       <div style="display:none; width:100%" id="signup-page">
         <h1 style="color:#87a;" class="display-4"> <br>                    Create Account                    </h1>
+        <p style="max-width: 70vw;"> 
+          Create an account and save your progress. <br>
+        </p>
         <br>
         <div>
           <table>
@@ -137,7 +156,7 @@
                 <tr><td>id/email</td><td>  <input type="text" id="signup-email" size="20"></td></tr>
                 <tr><td>password</td><td>  <input type="password" id="signup-pw" size="20"></td></tr>
                 <tr><td>confirm </td><td>  <input type="password" id="signup-pw2" size="20"></td></tr>
-                <tr><td></td><td>  <input type="submit" value="go"></td></tr>
+                <tr><td></td><td>  <input type="submit" class="btn myBtns2"style="color:#fff;" value="go"></td></tr>
                 </form>
             </tbody>
           </table>
@@ -163,7 +182,7 @@
               <form id="login-form">
               <tr><td>id/email</td><td>  <input type="text" id="login-email" size="20"></td></tr>
               <tr><td>password</td><td>  <input type="password" id="login-pw" size="20"></td></tr>
-              <tr><td></td><td>  <input type="submit" value="go"></td></tr>
+              <tr><td></td><td>  <input type="submit" class="btn myBtns2"style="color:#fff;" value="go"></td></tr>
               </form>
             </tbody>
           </table>
@@ -184,13 +203,13 @@
       <div name="left-div" style="float:left; width:50vw;">
           <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
           <p style="float:left;"></p>
-          <a id="previous" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId-1)">         prev         </a>
+          <a id="previous" style="color:#87a;" onclick="gotoQuestion(currentProblemId-1)">         prev         </a>
           &nbsp; | &nbsp;
-          <a id="next" href="#" style="color:#87a;" onclick="showQuestion(currentProblemId+1)">         next         </a> 
+          <a id="next" style="color:#87a;" onclick="gotoQuestion(currentProblemId+1)">         next         </a> 
           &nbsp; | &nbsp;
-          <a id="next" href="#" style="color:#87a;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
+          <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
           &nbsp; | &nbsp;
-          <a href="#" id="problem-hint" style="color: rgba(120,120,150,0.7);" onclick="
+          <a id="problem-hint" style="color: rgba(120,120,150,0.7);cursor: pointer;" onclick="
           let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
           ">         help         </a>
           <br> <br>
@@ -304,38 +323,6 @@
         while (output.children[0]) output.removeChild(output.children[0])
         editor.focus()
       }
-
-
-
-
-
-
-      // const setUrl = url => {
-      //   history.pushState({url}, url, '?q='+url)
-      // }
-      // window.onpopstate = e => {
-      //   e.preventDefault()
-      //   console.log('this happening')
-      //   if (!e.state) { console.log('here'); return gotoPage(HOME) }
-      //   const x = e.state.url
-      //   console.log('x =',x)
-      //   isNaN(+x) ? gotoPage(D(x)) : showQuestion(x)
-      //   return true
-      // }
-
-      // window.onload = e => {
-      //   e.preventDefault()
-      //   const x = location.search.slice(3)
-      //   console.log('that happening',isNaN(+x))
-      //   isNaN(+x) ? gotoPage(D(x)) : showQuestion(x)
-      //   return true
-      // }
-
-      function gotoPage(p, dontSetUrl) {
-        pages.forEach(p => p.style.display='none')
-        // if (!dontSetUrl) setUrl(p.id)
-        if (p) p.style.display='block'
-      }
       
 
 
@@ -344,10 +331,24 @@
 
 
 
+      function gotoPage(page, options) {
+        currentPage = page
+        if (options) var { n, preventURL } = options
+        pages.forEach(q => q.style.display = q === page ? 'block' : 'none')
+        if (!preventURL) {
+          const url = page.id
+          history.pushState({url,n}, url, url.split`-`[0] + (n == null ? '' : '?number=' + n))
+        }
+      }
 
-      function showQuestion(n) {
-        // setUrl(n)
-        gotoPage(PROBLEM)
+
+
+
+
+
+
+      
+      function gotoQuestion(n,p) {
         clearOutputLog()
         currentProblemId = +n
         const a = currentProblemId === 0, b = currentProblemId === PROBLEM_DATA.length-1 ;
@@ -364,6 +365,7 @@
         var row = editor.session.getLength() - 2
         editor.selection.moveTo(row)
         editor.navigateLineEnd()
+        gotoPage(PROBLEM,{n:n,preventURL:p})
       }
 
 
@@ -464,7 +466,7 @@
 
         User.completions[currentProblemId] = passedAll ? true : false
         D('all-pass-message').innerHTML = passedAll ? 
-        "You've passed all the tests! <a onclick=\"showQuestion(currentProblemId+1)\" style=\"color:#505;cursor:pointer;\">&nbsp; NEXT </a>" : ''
+        "You've passed all the tests! <a onclick=\"gotoQuestion(currentProblemId+1)\" style=\"color:#505;cursor:pointer;\">&nbsp; NEXT </a>" : ''
         colorButton(currentProblemId)
         User.save()
 

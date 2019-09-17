@@ -1,6 +1,27 @@
 function D (x) { return document.getElementById(x) }
 function E (x) { return document.createElement(x) }
 
+window.onload = e => {
+  e.preventDefault()
+  const x = location.pathname.slice(1) || 'home'
+  if (x === 'problem') 
+    gotoQuestion(location.search.slice(1).split`&`.find(s => s.startsWith('number')).split`=`[1])
+  else
+    gotoPage(D(x + '-page'))
+  return false
+}
+
+window.onpopstate = e => {
+  e.preventDefault()
+  if (e.state) { 
+    if (e.state.n) 
+      gotoQuestion(e.state.n, true)
+    else {
+      gotoPage(D(e.state.url), {preventURL: true})
+    }
+  }
+  return false
+}
 
 // Global constants/variables:
 var currentProblemId
@@ -49,7 +70,7 @@ CreateAllButtonsAtStart: {
     btn.style.font = '20px Arial'
     btn.id = i
     colorButton(i,btn)
-    btn.onclick = _ => showQuestion(btn.id)
+    btn.onclick = _ => gotoQuestion(btn.id)
     btn.innerHTML = (+i+1)
     row.appendChild(btn)
     if (i % 10 === 9) {            
@@ -96,3 +117,7 @@ Set_Up_Editor: {
 const pages = [
     HOME,ABOUT,LOGIN,SIGNUP,PROBLEM
 ] = 'home,about,login,signup,problem'.split`,`.map(s => D(s + '-page'))
+
+var currentPage;
+
+PROBLEM.onkeydown = function(e) { e.ctrlKey && e.keyCode === 13 && runTests() }
