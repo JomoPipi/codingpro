@@ -60,7 +60,6 @@ D('signup-form').onsubmit = function(e) {
     const [email,pw,pw2] = ['email','pw','pw2'].map(x => this['signup-'+x].value)
 
     if (pw !== pw2) return message('The passwords don\'t match. Please try again.')
-    console.log('email,pw =',email,pw)
 
     auth.createUserWithEmailAndPassword(email, pw).then(cred => {
         return db.collection('users').doc(cred.user.uid).set({
