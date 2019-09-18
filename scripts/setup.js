@@ -71,23 +71,26 @@ const db = firebase.firestore()
 
 
 CreateAllButtonsAtStart: {
-  let color = [248,253,253], row = E('div')
+  let color = [244,253,253], row = E('div')
   for (let i=0; i < PROBLEM_DATA.length; i++) {
     const btn = E('button')
     btn.type = 'button'
     btn.classList.add('btn')
     btn.style.margin = '5px'
-    btn.style.width = '80px'
-    btn.style.height = '80px'
+    // btn.style.width = '80px'
+    // btn.style.height = '80px'
+    // btn.innerHTML = i+1
+    btn.style.width = '18%'
+    btn.style.height = '40px'
+    btn.innerHTML = (i+1)// + '. ' + PROBLEM_DATA[i].name
     btn.style.font = '20px Arial'
     btn.id = i
     colorButton(i,btn)
     btn.onclick = _ => gotoQuestion(btn.id)
-    btn.innerHTML = (+i+1)
     row.appendChild(btn)
-    if (i % 10 === 9) {            
+    if (i % 5 === 4) {            
       row.style.backgroundColor = `rgb(${color.join`,`})`
-      color.forEach((_,i) => color[i] -= 13)
+      color.forEach((_,i) => color[i] -= 13/2)
       D('home-page').appendChild(row)
       row = E('div')
     }
@@ -96,8 +99,8 @@ CreateAllButtonsAtStart: {
 function colorButton(i, b) {
   const btn = b || D(''+i)
   const rgba = User.completions[i] ?
-  `rgba(9${i%4===0?0:3},24${i%4===1?0:3},9${i%4===2?0:3},0.8` :
-  `rgba(21${i%4===0?0:9},21${i%4===1?0:9},21${i%4===2?0:9},0.6`
+  `rgba(9${i%3===0?0:3},24${i%3===1?0:3},9${i%3===2?0:3},0.8` :
+  `rgba(21${i%3===0?0:3},21${i%3===1?0:3},21${i%3===2?0:3},0.6`
   btn.style.backgroundColor=rgba
   btn.style.transition = 'all 0.6s ease'
   btn.onmouseover=_=>btn.style.backgroundColor='#aae'

@@ -18,7 +18,8 @@ const PROBLEM_DATA = [
       'function myFirstFunction(x) {\n  \n}',
       x => x,
       [[0],[1],[-2],[235],['256'],[true],['hello']],
-      'You can solve this by having <span style="color:purple;font-family:monospace;"> return </span> <span style="font-family:monospace;"> x </span> between the curly brackets.'
+      `You can solve this by having <span style="color:purple;font-family:monospace;"> return </span> 
+      <span style="font-family:monospace;"> x </span> between the curly brackets.`
     ],
     // [
     //   'myFirstFunction',
@@ -54,7 +55,19 @@ const PROBLEM_DATA = [
       'function sumDouble(a, b) {\n  \n}',
       (a,b) => a === b ? 4 * a : a + b,
       [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[-3,3]],
-      'If-statements are one of the most common things you will use when programming. <br> Here is an example program you can study:<br> <span style="font-family:monospace;"> function equals2(x) { <br>&nbsp; if (x == 2) return true; <br>&nbsp; return false; <br> } <br> equals2(2) </span> evaluates to true, and <span style="font-family:monospace;"> equals2(3) </span> evaluates to false. <br> If you\'d like to see for yourself, open the developer tools tab on your browser, <br> and paste the code into the console. Then type <span style="font-family:monospace;"> equals2(2) </span> and press enter.'
+      `If-statements are one of the most common things you will use when programming.
+      Here is the syntax: <div style="font-family:monospace;clear:both;">
+      if (condition) { <br>
+      &nbsp; statement(); <br>
+      } <br>
+      </div> The statement will happen as long as <span style="font-family:monospace;"> condition </span> is some
+      expression that evaluates to true. Here are a few examples of expressions that evaluate to true:
+      <br> 
+      <div style="font-family:monospace;clear:both;">
+      true <br>
+      1 + 1 == 2 <br>
+      "race" + "car" == "racecar" <br>
+      "turtles"[2] == "r" <br> </div>`
     ],
     [
       'code',
