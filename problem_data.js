@@ -18,7 +18,7 @@ const PROBLEM_DATA = [
       'function myFirstFunction(x) {\n  \n}',
       x => x,
       [[0],[1],[-2],[235],['256'],[true],['hello']],
-      'Type <span style="color:purple;font-family:monospace;"> return </span> <span style="font-family:monospace;"> x </span> between the two braces. { }'
+      'You can solve this by having <span style="color:purple;font-family:monospace;"> return </span> <span style="font-family:monospace;"> x </span> between the curly brackets.'
     ],
     // [
     //   'myFirstFunction',
@@ -40,11 +40,11 @@ const PROBLEM_DATA = [
     ],
     [
       'addExcitement',
-      'Add an exclamation mark to the end of the input string, and return it.',
-      'addExcitement("Hello") → "Hello!" <br> addExcitement("I am a string") → "I am a string!"',
+      'Return the input with ", OMG!" concatenated to the end of it.',
+      'addExcitement("Wow") → "Wow, OMG!" <br> addExcitement("I am a string") → "I am a string, OMG!"',
       'function addExcitement(str) {\n  \n}',
-      x => x + '!',
-      [['Wow'],['!!!'],['OMG'],['I\'m not yelling'],['Here is a symbol you should be familiar with: ']],
+      x => x + ', OMG!',
+      [['Wow'],['!!!'],['OMG'],['I\'m not yelling']],
       'The same operator that you use for addition can be used for this.'
     ],
     [

@@ -123,6 +123,12 @@ Set_Up_Editor: {
   editor.setOptions(options);
   editor.setTheme("ace/theme/chrome");
   editor.getSession().setMode("ace/mode/javascript");
+  editor.place = _ => {
+    const row = editor.session.getLength() - 2
+    editor.selection.moveTo(row)
+    editor.navigateLineEnd()
+    editor.focus()
+  }
 }
 
 

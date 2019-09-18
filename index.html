@@ -367,9 +367,7 @@
         D('problem-examples').innerHTML =    PROBLEM_DATA[n].examples
         D('problem-description').innerHTML = PROBLEM_DATA[n].description
         editor.setValue(User.submissions[n] || PROBLEM_DATA[n].submission)
-        var row = editor.session.getLength() - 2
-        editor.selection.moveTo(row)
-        editor.navigateLineEnd()
+        editor.place()
         gotoPage(PROBLEM,{n:n,preventURL:p})
       }
 
@@ -382,6 +380,7 @@
       function resetQuestion(n) {
         if (confirm('Are you sure you erase all your work?'))
           editor.setValue(PROBLEM_DATA[n].solutionSetup)
+          editor.place()
       }
 
 
