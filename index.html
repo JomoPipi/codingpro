@@ -215,12 +215,12 @@
           &nbsp; | &nbsp;
           <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
           &nbsp; | &nbsp;
-          <a id="problem-hint" style="color: rgba(120,120,150,0.7);cursor: pointer;" onclick="
+          <a id="problem-hint" style="color: rgba(120,120,150,0.9);cursor: pointer;" onclick="
           let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
           ">         help         </a>
           <br> <br>
-          <p id="problem-description"></p>
-            
+          <p id="problem-description"></p> <hr class="my-4" style="margin:0;padding:0;" >
+          <p style="margin: 0;color:#999;"> examples: </p>  
           <p style="float:left;width:40vw;" id="problem-examples"></p> 
 
           <button type="button" class="btn myBtns2"style="float:right;" id="attempt"
@@ -336,6 +336,7 @@
 
 
       function gotoPage(page, options) {
+        if (!page) return
         currentPage = page
         if (options) var { n, preventURL } = options
         pages.forEach(q => q.style.display = q === page ? 'block' : 'none')
