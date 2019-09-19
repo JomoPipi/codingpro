@@ -13,7 +13,7 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
 const PROBLEM_DATA = [
     [
       'myFirstFunction',
-      'Return the input.',
+      'Return the input. Don\'t be afraid to smash that go button.',
       'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → -27 <br>',
       'function myFirstFunction(x) {\n  \n}',
       x => x,

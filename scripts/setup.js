@@ -76,7 +76,7 @@ CreateAllButtonsAtStart: {
     const btn = E('button')
     btn.type = 'button'
     btn.classList.add('btn')
-    btn.style.margin = '5px'
+    btn.style.margin = '1%'
     // btn.style.width = '80px'
     // btn.style.height = '80px'
     // btn.innerHTML = i+1
