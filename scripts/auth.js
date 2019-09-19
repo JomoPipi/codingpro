@@ -65,7 +65,7 @@ D('signup-form').onsubmit = function(e) {
             completions: User.completions,
             submissions: User.submissions
         })
-    }).then(_ => this.reset())
+    }).then(_ => this.reset()).catch(e => message(e))
 }
 
 

@@ -69,7 +69,6 @@ const auth = firebase.auth()
 const db = firebase.firestore()
 
 
-
 CreateAllButtonsAtStart: {
   let color = [244,253,253], row = E('div')
   for (let i=0; i < PROBLEM_DATA.length; i++) {
@@ -140,4 +139,4 @@ const pages = [
 ] = 'home,about,login,signup,problem'.split`,`.map(s => D(s + '-page'))
 
 
-PROBLEM.onkeydown = function(e) { e.ctrlKey && e.keyCode === 13 && runTests() }
+PROBLEM.onkeydown = function(e) { e.ctrlKey && (e.keyCode === 13 || e.keyCode === 83) && runTests() }
