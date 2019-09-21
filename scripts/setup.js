@@ -112,7 +112,11 @@ function colorAllButtons() {
 
 
 Set_Up_Editor: {
-  var editor = window.ace.edit(D("editor"));
+  var editor = window.ace.edit(D("editor"));let COUNT = [0]
+  // 3 favorites: eclipse, chrome, and gruvbox
+  // test different editors:
+  // let THEMES = 'dracula,clouds_midnight,solarized_light,solarized_dark,xcode,iplastic,chrome,merbivore_soft,kuroir,idle_fingers,gruvbox,eclipse,crimson_editor,dreamweaver,clouds'.split`,`
+  // document.onclick = function pick() { const t = THEMES[COUNT[0]++ % THEMES.length];editor.setTheme("ace/theme/" + t);console.log('theme =',t) }
   editor.renderer.setShowGutter(false);
   const options = {
     enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
@@ -123,7 +127,7 @@ Set_Up_Editor: {
     autoScrollEditorIntoView: true,
   }
   editor.setOptions(options);
-  editor.setTheme("ace/theme/chrome");
+  editor.setTheme("ace/theme/eclipse");
   editor.getSession().setMode("ace/mode/javascript");
   editor.place = _ => {
     const row = editor.session.getLength() - 2

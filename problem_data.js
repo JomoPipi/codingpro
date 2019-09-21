@@ -9,27 +9,36 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
     this.hint=hint
     this.authorSolution = authorSolution
 }
+const mono = x => `<span style="font-size:1.2em;font-family:monospace;">${x}</span>`
+const purp = x => `<span style="color:purple;">${x}</span>`
 
 const PROBLEM_DATA = [
+    // [
+    //   'times2',
+      
+    //   `${mono('x')} is the input of the function ${mono('times2')}.
+    //   Return that number multiplied by 2.
+    //   Some code is filled out for you already. Don't be afraid to hit the 'go' button.`,
+      
+    //   'times2(2) → 4 <br> times2(-27) → -54 <br>',
+    //   'function times2(x) {\n  return x \n}',
+    //   x => x*2,
+    //   [[0],[1],[-2],[2],[4],[5],[17],[-235]],
+    //   `You may research this topic 
+    //   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Multiplication">here</a>.`
+    // ],
     [
       'myFirstFunction',
-      'Return the input.',
+      `Return the input, ${mono('x')}.`,
       'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → -27 <br>',
-      'function myFirstFunction(x) {\n  \n}',
+      'function myFirstFunction(x) {\n  return \n}',
       x => x,
       [[0],[1],[-2],[235],['256'],[true],['hello']],
-      `You can solve this by having <span style="color:purple;font-family:monospace;"> return </span> 
-      <span style="font-family:monospace;"> x </span> between the curly brackets.`
+      `Here is a function that just returns the value 2:<br><br>
+      ${mono(`${purp('function')} just2() {<br>
+&nbsp;&nbsp; ${purp('return')} 2;<br>
+}`)}`
     ],
-    // [
-    //   'myFirstFunction',
-    //   "Just return the input.<br> If you don't know how to do that, then you should <a style=\"color:#505;\" href=\"https://www.google.com/search?q=javascript+how+to+return+a+value&oq=javascript+how+to+return+a+value\" target=\"_blank\">research it</a>. If it's too hard, you could always just give up and do something else.",
-    //   'myFirstFunction(2) → 2 <br> myFirstFunction(-27) → -27 <br>',
-    //   'function myFirstFunction(input) {\n  \n}',
-    //   x => x,
-    //   [[0],[1],[-2],[235],['256'],[true],['hello']],
-    //   'It\'s good to be the kind of person who looks around and sees what clues they could find. Don\'t give up. Try using <span style="color:purple;font-family:monospace;">return</span>. Your code should be between the two curly brackets. { }'
-    // ],
     [
       'add',
       'Create a function that takes two inputs and returns their sum.',
