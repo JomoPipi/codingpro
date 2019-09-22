@@ -10,6 +10,7 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
     this.authorSolution = authorSolution
 }
 const mono = x => `<span style="font-size:1.2em;font-family:monospace;">${x}</span>`
+
 const purp = x => `<span style="color:purple;">${x}</span>`
 
 const PROBLEM_DATA = [

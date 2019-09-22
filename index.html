@@ -28,7 +28,7 @@
         .myBtns:hover{ cursor: pointer; font-weight: 500; } 
         .myBtns2 {
           background: rgb(120,113,163);
-          color:#fff;
+          color:rgb(5, 4, 4);
           background: linear-gradient(0deg, rgba(120,113,163,1) 0%, rgba(135,120,163,1) 100%);
         } 
         .myBtns2:active {
@@ -249,47 +249,6 @@
 
     <canvas id="ctx" style="position:fixed;left:0;top:0;z-index:-9;background-color: transparent;width:100%;height:100vh;">
     </canvas>
-    <script>
-          (function (){
-            const canvas = document.getElementById('ctx')
-            const ctx = canvas.getContext('2d')
-            const W = canvas.width = window.innerWidth,
-                  H = canvas.height = window.innerHeight
-            ctx.strokeStyle='#faf'
-            ctx.lineWidth = 1
-            let time = 0
-            setInterval(_=>{
-              time++
-              ctx.clearRect(0,0,W,H)
-              ctx.beginPath()
-    
-              const speed = 5
-              const [S,C] = ['tan','sin'].map(x => n => Math[x](time/(n*speed))+1)
-              const dx = W, dy = H
-              const A = S(20), B = C(20)
-              for (let x=-W*20; x<W*20; x += dx)
-                for (let y=-H*20,i=0; y<H*20; y += dy, i++) {
-                  const [a,b,c,d,e,f,g,h] = 
-                  [x/A,-x/A,x/B,-x/B,y/A,-y/A,y/B,-y/B]
-                  const [aa,bb,cc,dd] =
-                  i % 2 ? [a/b,b/a,c/d,d/a] : [e,f,g,h]
-                  ctx.bezierCurveTo(
-                    cc,
-                    aa,
-                    bb,
-                    dd,
-                    x*A,
-                    y*B)
-                }
-    
-    
-              ctx.stroke()
-              ctx.closePath()
-            },20)
-          })//()
-    </script>
-
-
 
 
 
@@ -381,7 +340,8 @@
         pages.forEach(q => q.style.display = q === page ? 'block' : 'none')
         if (!preventURL) {
           const url = page.id
-          history.pushState({url,n}, url, url.split`-`[0] + (n == null ? '' : '?number=' + n))
+          history.pushState(
+            {url,n}, url, url.split`-`[0] + (n == null ? '' : '?number=' + n))
         }
       }
 
@@ -402,9 +362,9 @@
           s.color =         x ? '#999' : '#87a'
           s.cursor =        x ? 'default' : 'pointer'
         })
-        D('problem-name').innerHTML =        PROBLEM_DATA[n].name
-        D('problem-examples').innerHTML =    PROBLEM_DATA[n].examples
-        D('problem-description').innerHTML = PROBLEM_DATA[n].description
+        D('problem-name').innerHTML =          PROBLEM_DATA[n].name
+        D('problem-examples').innerHTML =      PROBLEM_DATA[n].examples
+        D('problem-description').innerHTML =   PROBLEM_DATA[n].description
         editor.setValue(User.submissions[n] || PROBLEM_DATA[n].submission)
         editor.place()
         gotoPage(PROBLEM,{n:n,preventURL:p})
@@ -417,9 +377,10 @@
 
 
       function resetQuestion(n) {
-        if (confirm('Are you sure you erase all your work?'))
+        if (confirm('Are you sure you erase all your work?')) {
           editor.setValue(PROBLEM_DATA[n].solutionSetup)
           editor.place()
+        }
       }
 
 
@@ -454,7 +415,8 @@
         User.save()
 
         if (typeof submission !== 'function') {
-          output.innerHTML = submission || `syntax error or ${name} needs to be a function.`
+          if (submission == null) output.innerHTML = `ReferenceError: ${name} is not defined`
+          output.innerHTML = submission.toString() || `syntax error or ${name} needs to be a function.`
           console.log = super_log
           return; 
         }
