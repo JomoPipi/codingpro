@@ -36,6 +36,19 @@
           color:#0fa;
           transition: 0.2s;
         }
+        @media all and (min-width:800px) {
+          #left-div {
+            width: 50vw;
+          }
+          #right-div {
+            width: 42vw;
+          }
+        }
+        @media all and (max-width:800px) {
+          #left-div,#right-div {
+            width: 90vw;
+          }
+        }
       </style>
       <script src="problem_data.js"></script>
       <script src="ace.js"></script>
@@ -205,7 +218,7 @@
     <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
     padding-right:2vw; padding-left:2vw; ">
 
-      <div name="left-div" style="float:left; width:50vw;">
+      <div id="left-div" style="float:left;">
           <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
           <p style="float:left;"></p>
           <a id="previous" style="color:#87a;" onclick="gotoQuestion(currentProblemId-1)">         prev         </a>
@@ -231,7 +244,7 @@
           min-height:50vh;max-height:50vh;"            id="editor"            ></div>
       </div>
 
-      <div name="right-div" style="float: right; width:42vw; padding: 2%; padding-top: 12vh;">
+      <div id="right-div" style="float: right; padding: 2%; padding-top: 12vh;">
         <div             id="output-table"              style="width:100%;"></div>
 
         <div style="color:#0a0;" id="all-pass-message"></div>
@@ -431,7 +444,6 @@
           })
           table.append(row) 
         }
-
         table.style.float = 'left'
         table.style.width = '100%'
         table.style.height = '20px'
