@@ -252,7 +252,7 @@
           <p style="margin: 0;color:#999;"> expected function behavior: </p>  
           <p style="float:left;width:40vw;" id="problem-examples"></p> 
 
-          <button type="button" class="btn myBtns2"style="float:right;" id="attempt"
+          <button type="button" class="btn myBtns2"style="float:right;" id="attempt" readonly="true"
           onclick="runTests(); return false;">         GO         </button>
 
           
@@ -262,7 +262,7 @@
 
       </div>
 
-      <div id="right-div" style="float: right;">
+      <div id="right-div" style="float: right;padding-top: 20%;">
         <div             id="output-table"              
         style="margin-top:2%; margin-bottom:2%; width:100%;"></div>
 
@@ -355,7 +355,6 @@
         const output = D('output-table')
         D('all-pass-message').innerHTML = D('hint').innerHTML = output.innerHTML = ''
         while (output.children[0]) output.removeChild(output.children[0])
-        editor.focus()
       }
       
 
@@ -450,6 +449,7 @@
           if (submission == null) output.innerHTML = `ReferenceError: ${name} is not defined`
           output.innerHTML = submission.toString() || `syntax error or ${name} needs to be a function.`
           console.log = super_log
+          window.scrollTo(0, window.innerHeight)
           return; 
         }
         
@@ -519,9 +519,8 @@
         logOutput.innerHTML = printOutput.map(x=>' &nbsp; '+x).join`<br>`
         if (printOutput.length) output.append(logOutput)
 
-        // scroll to bottom
-        window.scrollTo(0, window.innerHeight)
         
+        window.scrollTo(0, window.innerHeight)
         console.log = super_log
       }
 

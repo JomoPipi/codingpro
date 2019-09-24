@@ -112,9 +112,9 @@ function colorAllButtons() {
 
 
 Set_Up_Editor: {
-  var editor = window.ace.edit(D("editor"));let COUNT = [0]
+  var editor = window.ace.edit(D("editor"))
   // 3 favorites: eclipse, chrome, and gruvbox
-  // test different editors:
+  // test different editors: let COUNT = [0]
   // let THEMES = 'dracula,clouds_midnight,solarized_light,solarized_dark,xcode,iplastic,chrome,merbivore_soft,kuroir,idle_fingers,gruvbox,eclipse,crimson_editor,dreamweaver,clouds'.split`,`
   // document.onclick = function pick() { const t = THEMES[COUNT[0]++ % THEMES.length];editor.setTheme("ace/theme/" + t);console.log('theme =',t) }
   // editor.renderer.setShowGutter(false);
@@ -127,10 +127,28 @@ Set_Up_Editor: {
     autoScrollEditorIntoView: true,
     showGutter:false,
   }
+  // remove pretentious punctuation (that might come from a phone):
+  let fromServer
+  editor.getSession().on('change', function(e) {
+    if (fromServer) return;
+    const s = editor.getValue()
+    if (e.action === 'insert' && e.lines.some(l => /[\u201C\u201D\u2018\u2019]/.test(l))) {
+      fromServer = true
+      const {row, column} = editor.getCursorPosition()
+      editor.setValue(s.split`\n`.map(s => 
+        s.replace(/[\u201C\u201D]/g,'"').replace(/[\u2018\u2019]/g,"'") ).join`\n`)
+      editor.clearSelection()
+      editor.selection.moveTo(row, column)
+      fromServer = false
+    }
+  })
+
   editor.setOptions(options);
   editor.setTheme("ace/theme/eclipse");
   editor.getSession().setMode("ace/mode/javascript");
   editor.place = _ => {
+    
+    // if (window.innerWidth <= 700) return; 
     const row = editor.session.getLength() - 2
     editor.selection.moveTo(row)
     editor.navigateLineEnd()
