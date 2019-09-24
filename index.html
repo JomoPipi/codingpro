@@ -236,7 +236,7 @@
 
 
     <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
-    padding-right:2vw; padding-left:2vw; ">
+    padding-right:2vw; padding-left:2vw;">
 
       <div id="left-div" style="float:left;">
           <h2 style="color:#87a;margin-bottom: 0;" id="problem-name"></h2>
@@ -247,9 +247,8 @@
           &nbsp; | &nbsp;
           <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
           &nbsp; | &nbsp;
-          <a id="problem-hint" style="color: rgba(255,120,0,1);cursor: pointer;" onclick="
-          let x=D('hint');x.innerHTML=x.innerHTML?'':PROBLEM_DATA[currentProblemId].hint
-          ">         help         </a>
+          <a id="problem-hint" style="color: rgba(255,100,0,1);cursor: pointer;" 
+          onclick="showHelp()">         INFORMATION        </a>
           <br> <br>
           <p id="problem-description"style="font-size:1.2em;"></p> 
           <hr id="problem-page-hr" class="my-4" style="margin:0;padding:0;">
@@ -271,7 +270,7 @@
         style="margin-top:2%; margin-bottom:2%; width:100%;"></div>
 
         <div style="color:#0a0;" id="all-pass-message"></div>
-        <div id="hint"></div>
+        <div id="hint" style="margin-bottom: 3%;"></div>
       </div> 
     </div>
       
@@ -423,7 +422,32 @@
 
 
 
-
+      function showHelp() {
+        const x=D('hint')
+        if (x.innerHTML) x.innerHTML = ''
+        else {
+          x.innerHTML = PROBLEM_DATA[currentProblemId].hint
+          scroll_if_thin()
+        }
+      }
+      
+      
+      
+      
+      
+      
+      
+      function scroll_if_thin() {
+        if (window.innerWidth < 700) 
+          window.scrollTo({ top:window.innerHeight, behavior:'smooth'})
+      }
+      
+      
+      
+      
+      
+      
+      
       function runTests() {
         // 'use strict'   nah 
         clearOutputLog()
@@ -453,7 +477,7 @@
           if (submission == null) output.innerHTML = `ReferenceError: ${name} is not defined`
           output.innerHTML = submission.toString() || `syntax error or ${name} needs to be a function.`
           console.log = super_log
-          window.scrollTo({ top:window.innerHeight, behavior:'smooth'})
+          scroll_if_thin()
           return; 
         }
         
@@ -524,7 +548,7 @@
         if (printOutput.length) output.append(logOutput)
 
         
-        window.scrollTo({ top:window.innerHeight, behavior:'smooth'})
+        scroll_if_thin()
         console.log = super_log
       }
 
