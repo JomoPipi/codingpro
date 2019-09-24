@@ -22,6 +22,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="shortcut icon" 
+            type="image/x-icon" 
+            href="img/favicon.ico">
       <link id="style" rel="stylesheet" type="text/css" href="css/styles.css" />
       <title>                    CodingPro                    </title>
       <style> 
@@ -36,10 +39,13 @@
           color:#0fa;
           transition: 0.2s;
         }
+        #editor {
+          overflow-y: auto;
+          min-height:40vh;
+        }
         @media all and (min-width:700px) {
           #editor {
-            min-height:50vh;
-            max-height:50vh;
+            width:50%;
           }
           #left-div {
             width: 50vw;
@@ -56,8 +62,7 @@
             height:45%;
           }
           #editor {
-            min-height:20vh;
-            max-height:20vh;
+            width:100%;
           }
         }
       </style>
@@ -253,10 +258,13 @@
           
           <div style="border:1px solid #999;width:100%; clear: both;"
           id="editor"            ></div>
+
+
       </div>
 
-      <div id="right-div" style="float: right; padding: 2%;">
-        <div             id="output-table"              style="width:100%;"></div>
+      <div id="right-div" style="float: right;">
+        <div             id="output-table"              
+        style="margin-top:2%; margin-bottom:2%; width:100%;"></div>
 
         <div style="color:#0a0;" id="all-pass-message"></div>
         <div id="hint"></div>
@@ -423,7 +431,7 @@
           setTimeout(_ => runTests(true) , Math.random()*200 + 300 | 0)
           return
         }
-
+        
         let passedAll = true    
         const { name, solution, testinputs } = PROBLEM_DATA[currentProblemId]
         const printOutput = [], super_log = console.log
@@ -510,6 +518,9 @@
         }
         logOutput.innerHTML = printOutput.map(x=>' &nbsp; '+x).join`<br>`
         if (printOutput.length) output.append(logOutput)
+
+        // scroll to bottom
+        window.scrollTo(0, window.innerHeight)
         
         console.log = super_log
       }

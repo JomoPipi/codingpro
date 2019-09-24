@@ -123,8 +123,9 @@ Set_Up_Editor: {
     enableLiveAutocompletion: true, // the editor completes the statement while you are typing
     showPrintMargin: false, // hides the vertical limiting strip
     fontSize: "100%",
-    maxLines: 1000,
+    maxLines: 100,
     autoScrollEditorIntoView: true,
+    showGutter:false,
   }
   editor.setOptions(options);
   editor.setTheme("ace/theme/eclipse");
