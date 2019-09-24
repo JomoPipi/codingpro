@@ -52,11 +52,15 @@
             height:100%;
           }
           #right-div {
+            padding-top: 20%;
             height:100%;
             width: 42vw;
           }
         }
         @media all and (max-width:700px) {
+          #right-div {
+            padding-top: 0%;
+          }
           #left-div,#right-div {
             width: 100%;
             height:45%;
@@ -262,7 +266,7 @@
 
       </div>
 
-      <div id="right-div" style="float: right;padding-top: 20%;">
+      <div id="right-div" style="float: right;">
         <div             id="output-table"              
         style="margin-top:2%; margin-bottom:2%; width:100%;"></div>
 
@@ -449,7 +453,7 @@
           if (submission == null) output.innerHTML = `ReferenceError: ${name} is not defined`
           output.innerHTML = submission.toString() || `syntax error or ${name} needs to be a function.`
           console.log = super_log
-          window.scrollTo(0, window.innerHeight)
+          window.scrollTo({ top:window.innerHeight, behavior:'smooth'})
           return; 
         }
         
@@ -520,7 +524,7 @@
         if (printOutput.length) output.append(logOutput)
 
         
-        window.scrollTo(0, window.innerHeight)
+        window.scrollTo({ top:window.innerHeight, behavior:'smooth'})
         console.log = super_log
       }
 

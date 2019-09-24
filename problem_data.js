@@ -10,8 +10,8 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
     this.authorSolution = authorSolution
 }
 const mono = x => `<span style="font-size:1.2em;font-family:monospace;">${x}</span>`
-
 const purp = x => `<span style="color:purple;">${x}</span>`
+const blue = x => `<span style="color:blue;">${x}</span>`
 
 const PROBLEM_DATA = [
     // [
@@ -51,7 +51,7 @@ const PROBLEM_DATA = [
     ],
     [
       'addExcitement',
-      'Return the input with ", OMG!" concatenated to the end of it.',
+      `Return the input with ${mono(blue('", OMG!"'))} concatenated to the end of it.`,
       'addExcitement("Wow") → "Wow, OMG!" <br> addExcitement("I am a string") → "I am a string, OMG!"',
       'function addExcitement(str) {\n  \n}',
       x => x + ', OMG!',
