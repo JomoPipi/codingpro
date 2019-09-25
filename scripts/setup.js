@@ -144,7 +144,7 @@ Set_Up_Editor: {
   })
 
   editor.setOptions(options);
-  editor.setTheme("ace/theme/eclipse");
+  editor.setTheme("ace/theme/chrome");
   editor.getSession().setMode("ace/mode/javascript");
   editor.place = _ => {
     

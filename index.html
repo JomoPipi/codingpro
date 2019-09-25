@@ -234,7 +234,7 @@
 
 
 
-
+  
     <div id="problem-page"style="display:none;background-color: #fff; height:100%; width:100%;
     padding-right:2vw; padding-left:2vw;">
 
@@ -244,20 +244,22 @@
           <a id="previous" style="color:#87a;" onclick="gotoQuestion(currentProblemId-1)">         prev         </a>
           &nbsp; | &nbsp;
           <a id="next" style="color:#87a;" onclick="gotoQuestion(currentProblemId+1)">         next         </a> 
-          &nbsp; | &nbsp;
-          <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
-          &nbsp; | &nbsp;
-          <a id="problem-hint" style="color: rgba(255,100,0,1);cursor: pointer;" 
-          onclick="showHelp()">         INFORMATION        </a>
+          
           <br> <br>
           <p id="problem-description"style="font-size:1.2em;"></p> 
           <hr id="problem-page-hr" class="my-4" style="margin:0;padding:0;">
           <p style="margin: 0;color:#999;"> expected function behavior: </p>  
-          <p style="float:left;width:40vw;" id="problem-examples"></p> 
+          <p style="float:left;" id="problem-examples"></p> 
 
-          <button type="button" class="btn myBtns2"style="float:right;" id="attempt" readonly="true"
-          onclick="runTests(); return false;">         GO         </button>
-
+          <span style="float:right;">
+            <button type="button" class="btn myBtns2" id="attempt" readonly="true" style="display: block;"
+            onclick="runTests(); return false;">         GO         </button>
+            
+            <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
+            &nbsp; | &nbsp;
+            <a id="problem-hint" style="color: rgba(255,100,0,1);cursor: pointer;" 
+            onclick="showHelp()">         more info        </a>
+          </span>
           
           <div style="border:1px solid #999;width:100%; clear: both;"
           id="editor"            ></div>

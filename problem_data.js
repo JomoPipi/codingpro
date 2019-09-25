@@ -9,9 +9,10 @@ function Problem(name,description,examples,solutionSetup,solution,testinputs,hin
     this.hint=hint
     this.authorSolution = authorSolution
 }
-const mono = x => `<span style="font-size:1.2em;font-family:monospace;">${x}</span>`
+const mono = x => `<span style="font-size:1.4em;font-family:monospace;">${x}</span>`
 const purp = x => `<span style="color:purple;">${x}</span>`
 const blue = x => `<span style="color:blue;">${x}</span>`
+const lblu = x => `<span style="color:rgb(100,100,255);">${x}</span>`
 
 const PROBLEM_DATA = [
     // [
@@ -42,7 +43,7 @@ const PROBLEM_DATA = [
     ],
     [
       'add',
-      'Create a function that takes two inputs and returns their sum.',
+      `Create a function that takes two inputs and returns their sum.`,
       'add(1,1) → 2 <br> add(-5,5) → 0',
       'function add(a,b) {\n  \n}',
       (a,b) => a + b,
@@ -59,18 +60,35 @@ const PROBLEM_DATA = [
       'The same operator that you use for addition can be used for this.'
     ],
     [
+      'oldEnough',
+      `Please fix our function that is supposed to return ${mono(lblu('true'))} if ${mono('age')} is
+        greater than or equal to 35. Press the GO button and work your way from there.`,
+      'oldEnough(50) → true <br> oldEnough(10) → false',
+      `function oldEnough(age) {
+  if (age > 35) { 
+    return false;
+  }
+  return true;
+}`,
+      x => x>=35,
+      [1,5,8,34,35,36,50,70,200].map(x=>[x]),
+      `Did you know that 35 is the minimum age required to be the president of the USA?
+        If you're stuck, press the reset button, then press the GO button, and then analyze 
+        what needs to be changed in the code.`
+    ],
+    [
       'sumDouble',
       'Given two numbers, return their sum. But if the two values are the same, then return double their sum.',
       'sumDouble(1, 2) → 3 <br> sumDouble(3, 2) → 5 <br> sumDouble(2, 2) → 8 <br>',
       'function sumDouble(a, b) {\n  \n}',
       (a,b) => a === b ? 4 * a : a + b,
       [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[-3,3]],
-      `If-statements are one of the most common things you will use when programming.
+      `Learn what ${mono(purp('if'))} statements are.
       Here is the syntax: <div style="font-family:monospace;clear:both;">
       if (condition) { <br>
-      &nbsp; statement(); <br>
+      &nbsp; // statements <br>
       } <br>
-      </div> The statement will happen as long as <span style="font-family:monospace;"> condition </span> is some
+      </div> The statement will happen as long as ${mono('condition')} </span> is some
       expression that evaluates to true. Here are a few examples of expressions that evaluate to true:
       <br> 
       <div style="font-family:monospace;clear:both;">
@@ -78,14 +96,6 @@ const PROBLEM_DATA = [
       1 + 1 == 2 <br>
       "race" + "car" == "racecar" <br>
       "turtles"[2] == "r" <br> </div>`
-    ],
-    [
-      'code',
-      'This website is still under construction.',
-      'example(input) -> exampleOutput',
-      'function code(x) {\n  \n}',
-      x => x,
-      [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43]]
     ],
     [
       'code',
