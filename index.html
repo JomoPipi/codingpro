@@ -244,6 +244,8 @@
           <a id="previous" style="color:#87a;" onclick="gotoQuestion(currentProblemId-1)">         prev         </a>
           &nbsp; | &nbsp;
           <a id="next" style="color:#87a;" onclick="gotoQuestion(currentProblemId+1)">         next         </a> 
+          &nbsp; | &nbsp;
+          <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
           
           <br> <br>
           <p id="problem-description"style="font-size:1.2em;"></p> 
@@ -255,8 +257,6 @@
             <button type="button" class="btn myBtns2" id="attempt" readonly="true" style="display: block;"
             onclick="runTests(); return false;">         GO         </button>
             
-            <a id="next" style="color:#87a;cursor: pointer;" onclick="resetQuestion(currentProblemId)">         reset         </a> 
-            &nbsp; | &nbsp;
             <a id="problem-hint" style="color: rgba(255,100,0,1);cursor: pointer;" 
             onclick="showHelp()">         more info        </a>
           </span>

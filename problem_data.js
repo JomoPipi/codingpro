@@ -13,6 +13,7 @@ const mono = x => `<span style="font-size:1.4em;font-family:monospace;">${x}</sp
 const purp = x => `<span style="color:purple;">${x}</span>`
 const blue = x => `<span style="color:blue;">${x}</span>`
 const lblu = x => `<span style="color:rgb(100,100,255);">${x}</span>`
+const mini = x => `<span style="font-size:0.4em;">${x}</span>`
 
 const PROBLEM_DATA = [
     // [
@@ -1657,4 +1658,4 @@ const PROBLEM_DATA = [
       x => x,
       [[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43],[1,1],[0,2],[2,0],[2,2],[0,0],[5,-1],[-3,-3],[13,12],[0.43,-0.43]]
     ]
-].map(args => new Problem(...args))
+].map((args,number) => new Problem(...args))
