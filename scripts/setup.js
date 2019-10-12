@@ -142,7 +142,7 @@ Set_Up_Editor: {
       fromServer = false
     }
   })
-
+  D('editor').style.borderRadius = '10px'
   editor.setOptions(options);
   editor.setTheme("ace/theme/chrome");
   editor.getSession().setMode("ace/mode/javascript");

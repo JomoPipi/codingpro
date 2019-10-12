@@ -1,4 +1,4 @@
-define("ace/theme/chrome",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
+ace.define("ace/theme/chrome",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
 
 exports.isDark = false;
 exports.cssClass = "ace-chrome";
@@ -46,10 +46,6 @@ color: rgb(6, 150, 14);\
 .ace-chrome .ace_support.ace_class\
 .ace-chrome .ace_support.ace_other {\
 color: rgb(109, 121, 222);\
-}\
-.ace-chrome .ace_variable.ace_parameter {\
-font-style:italic;\
-color:#FD971F;\
 }\
 .ace-chrome .ace_keyword.ace_operator {\
 color: rgb(104, 118, 135);\
@@ -126,7 +122,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 var dom = require("../lib/dom");
 dom.importCssString(exports.cssText, exports.cssClass);
 });                (function() {
-                    window.require(["ace/theme/chrome"], function(m) {
+                    ace.require(["ace/theme/chrome"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {
                             module.exports = m;
                         }

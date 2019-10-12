@@ -30,8 +30,10 @@
       <style> 
         .myBtns:hover{ cursor: pointer; font-weight: 500; } 
         .myBtns2 {
-          background: rgb(120,113,163);
-          color:rgb(5, 4, 4);
+          margin:1%;
+          background: rgb(164, 156, 214);
+          color:white;
+          width:100%;
           background: linear-gradient(0deg, rgba(120,113,163,1) 0%, rgba(135,120,163,1) 100%);
         } 
         .myBtns2:active {
@@ -157,7 +159,8 @@
           translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
           <a class="dropdown-header"> - papers - </a>
           <a class="dropdown-item" href="https://www.inf.fu-berlin.de/lehre/WS03/alpi/lambda.pdf" target="_blank">Intro to Lambda Calculus</a>
-          <a class="dropdown-header"> - video tutorial - </a>
+          <a class="dropdown-header"> - videos - </a>
+          <a class="dropdown-item" href="https://www.youtube.com/watch?v=5xUDoKkmuyw" target="_blank">How call stacks work (python)</a>
           <a class="dropdown-item" href="https://www.youtube.com/watch?v=XgK4YaMqQFg" target="_blank">Make a game in JavaScript</a>
           <a class="dropdown-header"> - coding game - </a>
           <a class="dropdown-item" href="https://tomorrowcorporation.com/humanresourcemachine" target="_blank">Human Resource Machine</a>
@@ -250,18 +253,20 @@
           <br> <br>
           <p id="problem-description"style="font-size:1.2em;"></p> 
           <hr id="problem-page-hr" class="my-4" style="margin:0;padding:0;">
-          <p style="margin: 0;color:#999;"> expected function behavior: </p>  
-          <p style="float:left;" id="problem-examples"></p> 
 
-          <span style="float:right;">
-            <button type="button" class="btn myBtns2" id="attempt" readonly="true" style="display: block;"
-            onclick="runTests(); return false;">         GO         </button>
+          <div style="float:left;">
+            <p style="margin: 0;color:#999;"> expected function behavior:</p> <br>  
+            <p id="problem-examples"></p> 
+          </div>
+          <div style="float:right;">
+            <button type="button" class="btn myBtns2" id="attempt" readonly="true" 
+            style="top:0;display: block;margin-bottom: 4%;" onclick="runTests(); return false;">         GO         </button>
             
-            <a id="problem-hint" style="color: rgba(255,100,0,1);cursor: pointer;" 
-            onclick="showHelp()">         more info        </a>
-          </span>
+            <a id="problem-hint" style="background: rgb(198, 255, 198);cursor: pointer;" 
+            class="btn myBtns2" onclick="showHelp()">         more info        </a>
+          </div>
           
-          <div style="border:1px solid #999;width:100%; clear: both;"
+          <div style="border:1px solid #999;width:100%; clear: both;margin-bottom: 1%;"
           id="editor"            ></div>
 
 
@@ -428,6 +433,7 @@
         const x=D('hint')
         if (x.innerHTML) x.innerHTML = ''
         else {
+          clearOutputLog()
           x.innerHTML = PROBLEM_DATA[currentProblemId].hint
           scroll_if_thin()
         }
@@ -493,6 +499,7 @@
           })
           table.append(row) 
         }
+        
         table.style.float = 'left'
         table.style.width = '100%'
         table.style.height = '20px'
@@ -521,7 +528,8 @@
           table.append(row) 
         }
         const tableContainer = E('div')
-        tableContainer.style.overflowY = 'scroll'
+        tableContainer.style.borderRadius = '10px'
+        tableContainer.style.overflowY = 'auto'
         tableContainer.style.overflowX = 'hidden'
         tableContainer.style.maxHeight = '40vh'
         tableContainer.style.backgroundColor ='#ddd'
