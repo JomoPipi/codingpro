@@ -1,4 +1,4 @@
 # codingpro
 A small website for absolute beginners to begin teaching themselves how to code.
 
-Head on over to codingpro.org
+Head on over to https://codingpro.org
