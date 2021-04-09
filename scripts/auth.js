@@ -52,11 +52,12 @@ auth.onAuthStateChanged(user => {
 // create account
 D('signup-form').onsubmit = function(e) {
     e.preventDefault()
+    console.log('yoyo')
 
     const message = msg => 
         D('signup-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
 
-    const [email,pw,pw2] = ['email','pw','pw2'].map(x => this['signup-'+x].value)
+    const [email,pw,pw2] = ['email','pw','pw2'].map(x => D('signup-'+x).value)
 
     if (pw !== pw2) return message('The passwords don\'t match. Please try again.')
 
@@ -95,7 +96,7 @@ D('logout').onclick = function(e) {
 // login 
 D('login-form').onsubmit = function(e) {
     e.preventDefault()
-
+    console.log('hello!!')
     const message = msg => 
         D('login-msg').innerHTML = '<span style="color:red;">' + msg + '</span>'
 
