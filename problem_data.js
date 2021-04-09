@@ -35,9 +35,9 @@ const PROBLEM_DATA = [
       'function myFirstFunction(x) {\n  return \n}',
       x => x,
       [[0],[1],[-2],[235],['256'],[true],['hello']],
-      `Here is the syntax for a function that just returns the value 2:<br><br>
-      ${mono(`${purp('function')} thisJustOutputs2() {<br>
-&nbsp;&nbsp; ${purp('return')} 2<br>
+      `Here's a function that returns x plus one:<br><br>
+      ${mono(`${purp('function')} myFirstFunction(x) {<br>
+&nbsp;&nbsp; ${purp('return')} x+1<br>
 }`)}`
     ],
     [
